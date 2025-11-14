@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recrutement - Tuners</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav-shell">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">🔧</span>
+      <span class="brand-name">Tuners</span>
+    </div>
+
+      <button class="nav-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Accueil</a>
+        <a href="index.html#services" class="nav-link">Services</a>
+        <a href="index.html#rdv" class="nav-link">Rendez-vous</a>
+        <a href="index.html#tarifs" class="nav-link">Tarifs</a>
+        <a href="index.html#equipe" class="nav-link">Équipe</a>
+        <a href="recrutement.html" class="nav-link active">Recrutement</a>
+        <a href="evenements.html" class="nav-link">Événements</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell recruit-grid">
+        <div>
+          <h1>Recrutement Tuners</h1>
+          <p class="page-sub">
+            Tu veux rejoindre notre équipe ? Envoie-nous ta candidature.
+          </p>
+
+          <div class="info-card">
+            <h3>Voici le profil que nous recherchons</h3>
+            <ul class="info-list vertical">
+              <li>- Bonne communication.</li>
+              <li>- Personne motivée et respectueuse</li>
+              <li>- Présence régulière (dans la mesure du possible).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2>Candidature</h2>
+          <form id="form-recrut">
+            <div class="grid grid-2">
+              <label>
+                Pseudo Discord *
+                <input type="text" name="discord" required placeholder="Ex : Turtuple" />
+              </label>
+              <label>
+                Âge HRP *
+                <input type="number" name="age_hrp" required min="14" max="99" placeholder="Ex : 19" />
+              </label>
+            </div>
+
+            <label>
+              Disponibilités *
+              <input type="text" name="dispo" required placeholder="Ex : soirs + week-end" />
+            </label>
+
+            <div class="grid grid-2">
+              <label>
+                Nom & prénom RP *
+                <input type="text" name="nom_rp" required placeholder="Ex : Lebron James" />
+              </label>
+              <label>
+                Âge RP *
+                <input type="number" name="age_rp" required placeholder="Ex : 24" />
+              </label>
+            </div>
+
+            <div class="grid grid-2">
+              <label>
+                Qualités (minimum 2) *
+                <textarea name="qualites" rows="3"
+                  placeholder="Ex : ponctuel, patient" required></textarea>
+              </label>
+              <label>
+                Défauts (minimum 2) *
+                <textarea name="defauts" rows="3"
+                  placeholder="Ex : perfectionniste, direct" required></textarea>
+              </label>
+            </div>
+
+            <label>
+              Motivations (minimum 4 lignes) *
+              <textarea name="motifs" rows="4"
+                placeholder="Pourquoi ce poste, tes objectifs…"
+                required></textarea>
+            </label>
+
+            <label>
+              Pourquoi toi ? (minimum 4 lignes) *
+              <textarea name="pqtoi" rows="4"
+                placeholder="Ce que tu peux apporter à l'équipe."
+                required></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary full">
+              Envoyer la candidature
+            </button>
+            <p id="recrut-message" class="form-message"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-shell">
+      <p class="footer-meta">
+        Recrutement - Tuners • Vous serez contacté sur Discord par rapport à votre candidature.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

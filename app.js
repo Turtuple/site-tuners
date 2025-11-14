@@ -1,0 +1,147 @@
+const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
+const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
+
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('.nav');
+
+if (toggle && nav) {
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.matches('a')) {
+      nav.classList.remove('open');
+    }
+  });
+}
+
+async function sendToDiscord(webhookUrl, payload) {
+  const res = await fetch(webhookUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    throw new Error("Erreur HTTP " + res.status);
+  }
+}
+
+const rdvForm = document.getElementById('form-rdv');
+const rdvMsg  = document.getElementById('rdv-message');
+
+if (rdvForm && rdvMsg) {
+  rdvForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    rdvMsg.textContent = "Envoi en cours…";
+    rdvMsg.style.color = "#b7a8ff";
+
+    const formData = new FormData(rdvForm);
+
+    const nom       = formData.get("nom") || "—";
+    const telephone = formData.get("telephone") || "—";
+    const service   = formData.get("service") || "—";
+    const date      = formData.get("date") || "—";
+    const heure     = formData.get("heure") || "—";
+    const details   = formData.get("details") || "—";
+
+    const payload = {
+      username: "Tuners - Rendez-vous",
+      embeds: [
+        {
+          title: "Nouvelle demande de rendez-vous",
+          color: 0x7250ff,
+          fields: [
+            { name: "Nom RP", value: nom, inline: false },
+            { name: "Numéro de téléphone", value: telephone, inline: false },
+            { name: "Service demandé", value: service, inline: true },
+            { name: "Jour souhaité", value: date, inline: true },
+            { name: "Heure approximative", value: heure, inline: true },
+            {
+              name: "Détails",
+              value: details.length > 0 ? details : "Aucun détail fourni.",
+              inline: false
+            }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      await sendToDiscord(DISCORD_WEBHOOK_RDV, payload);
+      rdvMsg.textContent =
+        "Demande envoyée sur Discord. Un membre de l'équipe vous contactera pour confirmer le rendez-vous.";
+      rdvMsg.style.color = "#77dd88";
+      rdvForm.reset();
+    } catch (err) {
+      console.error(err);
+      rdvMsg.textContent =
+        "Une erreur est survenue lors de l'envoi sur Discord. Veuillez réessayer plus tard.";
+      rdvMsg.style.color = "#ff7b7b";
+    }
+  });
+}
+
+const recForm = document.getElementById('form-recrut');
+const recMsg  = document.getElementById('recrut-message');
+
+if (recForm && recMsg) {
+  recForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    recMsg.textContent = "Envoi en cours…";
+    recMsg.style.color = "#b7a8ff";
+
+    const formData = new FormData(recForm);
+
+    const discord = formData.get("discord") || "—";
+    const age_hrp = formData.get("age_hrp") || "—";
+    const dispo   = formData.get("dispo") || "—";
+    const nom_rp  = formData.get("nom_rp") || "—";
+    const age_rp  = formData.get("age_rp") || "—";
+    const qualites = formData.get("qualites") || "—";
+    const defauts  = formData.get("defauts") || "—";
+    const motifs   = formData.get("motifs") || "—";
+    const pqtoi    = formData.get("pqtoi") || "—";
+
+    const payload = {
+      username: "Tuners - Recrutement",
+      embeds: [
+        {
+          title: "Nouvelle candidature Tuners",
+          color: 0x4b39c7,
+          fields: [
+            { name: "Pseudo Discord", value: discord, inline: false },
+            { name: "Âge HRP", value: String(age_hrp), inline: true },
+            { name: "Disponibilités", value: dispo, inline: true },
+            { name: "Nom & prénom RP", value: nom_rp, inline: false },
+            { name: "Âge RP", value: String(age_rp), inline: true },
+            { name: "Qualités", value: qualites, inline: false },
+            { name: "Défauts", value: defauts, inline: false },
+            { name: "Motivations", value: motifs, inline: false },
+            { name: "Pourquoi toi ?", value: pqtoi, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      await sendToDiscord(DISCORD_WEBHOOK_RECRUT, payload);
+      recMsg.textContent =
+        "Candidature envoyée sur Discord. L'équipe vous contactera directement sur Discord si vous êtes retenu(e).";
+      recMsg.style.color = "#77dd88";
+      recForm.reset();
+    } catch (err) {
+      console.error(err);
+      recMsg.textContent =
+        "Une erreur est survenue lors de l'envoi sur Discord. Veuillez réessayer plus tard.";
+      recMsg.style.color = "#ff7b7b";
+    }
+  });
+}
