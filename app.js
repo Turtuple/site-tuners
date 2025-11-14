@@ -1,5 +1,5 @@
-const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
-const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
+const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438784418415251486/WNQ-CP1PVv6dLSAsQod4ZFIcUYHTACN47GPswGxWG4yufXLrRWKytTbTZcffyl9sti1U";
+const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438784604784951299/G27KS5K6HlVeWEBHDefMi6J4c1QPafBJhIl5zR6g5LUpk4meyak3RrHC7ZU17lCRbx0F";
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
@@ -144,4 +144,5 @@ if (recForm && recMsg) {
       recMsg.style.color = "#ff7b7b";
     }
   });
+
 }
