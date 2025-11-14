@@ -113,7 +113,7 @@ if (recForm && recMsg) {
       username: "Tuners - Recrutement",
       embeds: [
         {
-          title: "Nouvelle candidature Tuners",
+          title: "Nouvelle demande de recrutement",
           color: 0x4b39c7,
           fields: [
             { name: "Pseudo Discord", value: discord, inline: false },
@@ -146,3 +146,4 @@ if (recForm && recMsg) {
   });
 
 }
+
