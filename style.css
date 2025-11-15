@@ -435,4 +435,21 @@ textarea {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #22233a;
+
+}
+
+.nav-discord {
+  color: #8f97b3;
+  display: flex;
+  align-items: center;
+  transition: .18s ease;
+}
+
+.nav-discord:hover {
+  color: #5865F2;
+}
+
+.discord-icon {
+  width: 22px;
+  height: 22px;
 }
