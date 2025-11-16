@@ -288,12 +288,10 @@ textarea {
   margin-top: 16px;
 }
 
-/* Spécifique au gros bouton de congé */
 #form-conge .btn.full {
   max-width: 420px;
   width: 100%;
   display: block;
-  margin: 16px auto 0;  /* centré */
 }
 
 .form-message {
@@ -762,3 +760,4 @@ textarea {
     grid-template-columns: 1fr 1fr;
   }
 }
+
