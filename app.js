@@ -148,7 +148,7 @@ if (recForm && recMsg) {
 
 }
 
-const EMPLOYEE_CODE = "TUNERS2025"; // change-le
+const EMPLOYEE_CODE = "TUNERS2025";
 
 const codeInput      = document.getElementById("employee-code");
 const loginBtn       = document.getElementById("employee-login-btn");
@@ -234,3 +234,4 @@ if (congeForm && congeMsg) {
     }
   });
 }
+
