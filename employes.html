@@ -17,7 +17,7 @@
       <button class="nav-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
-      
+
       <nav class="nav">
         <a href="index.html#hero" class="nav-link">Accueil</a>
         <a href="index.html#services" class="nav-link">Services</a>
@@ -35,15 +35,17 @@
     <section class="section">
       <div class="shell">
 
-        <h1>Portail employés</h1>
+        <h1>Portail Employés</h1>
         <p class="page-sub">
           Zone interne réservée aux employés Tuners.<br>
-          Entrez le code d’accès pour envoyer une demande de congé.
+          Entrez le code d’accès pour consulter les informations internes
+          et envoyer une demande de congé.
         </p>
+
         <div class="card" id="login-card">
           <h2>Connexion employés</h2>
           <p class="page-sub">
-            Entre le code transmis par la direction pour accéder au formulaire interne.
+            Entre le code transmis par la direction pour accéder au portail interne.
           </p>
 
           <label>
@@ -64,7 +66,65 @@
 
         <div id="employee-zone" style="display:none; margin-top:18px;">
 
-          <div class="card form-card">
+          <div class="grid grid-2">
+
+            <article class="card">
+              <h2>Employé de la semaine</h2>
+              <p class="page-sub">
+                Aucun employé de la semaine n'a été désigné.
+              </p>
+            </article>
+
+            <article class="card">
+              <h2>Calendrier</h2>
+              <p class="page-sub">
+                Calendrier interne des activités importantes pour le garage Tuners.
+              </p>
+
+              <ul class="calendar-list">
+                <li>
+                  <div class="calendar-date">
+                    <span class="calendar-day">16</span>
+                    <span class="calendar-month">NOV</span>
+                  </div>
+                  <div class="calendar-content">
+                    <p class="calendar-meta">Ouverture officielle du garage Tuners</p>
+                  </div>
+                </li>
+              </ul>
+            </article>
+
+          </div>
+
+          <article class="card" style="margin-top:18px;">
+            <h2>Guides rapides</h2>
+            <p class="page-sub">
+              Rappels importants pour garder une bonne qualité de service et un bon RP.
+            </p>
+
+            <ul class="guide-list">
+              <li>
+                <h4>1. Ouverture / fermeture du garage</h4>
+                <p>
+                  Toujours annoncer en ville l’ouverture/fermeture quand vous êtes le premier/dernier en service.
+                </p>
+              </li>
+              <li>
+                <h4>2. Fiche de paie</h4>
+                <p>
+                  Enregistrer correctement les services rendu sur la fiche de paie pour chaque service effectué. Pour un guide plus en détail consulté "Guide d’utilisation – Fiche de paie Tuners" sur Discord.
+                </p>
+              </li>
+              <li>
+                <h4>3. Facturation le client</h4>
+                <p>
+                  Facturer le client avec le menu F6. Toujours expliquer les coûts au client avant de lui facturer le service.
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <div class="card form-card" style="margin-top:18px;">
             <h2>Demande de congé</h2>
             <p class="page-sub">
               Remplis ce formulaire pour soumettre une demande de congé à la direction.<br>
@@ -129,5 +189,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
-
