@@ -147,11 +147,7 @@ if (recForm && recMsg) {
   });
 }
 
-// === Espace employés : protection simple par code ===
-// ATTENTION : ce n'est pas une vraie sécurité, le code est visible dans le JS.
-// Suffisant pour un usage RP.
-
-const EMPLOYEE_CODE = "TUNERS2025"; // change-le
+const EMPLOYEE_CODE = "TUNERS2025"; 
 
 const codeInput      = document.getElementById("employee-code");
 const loginBtn       = document.getElementById("employee-login-btn");
@@ -696,6 +692,7 @@ if (congeForm && congeMsg) {
 
   initSelectors();
 })();
+
 
 
 
