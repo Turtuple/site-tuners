@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         embeds: [
           {
             title: "Nouvelle demande de rendez-vous",
-            color: 0x7250ff,
+            color: 0x4b39c7,
             fields: [
               { name: "Nom RP", value: nom, inline: false },
               { name: "Numéro de téléphone", value: telephone, inline: false },
@@ -693,4 +693,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
 
