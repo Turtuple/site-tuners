@@ -693,6 +693,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
-
-
-
