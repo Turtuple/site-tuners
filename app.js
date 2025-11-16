@@ -148,6 +148,36 @@ if (recForm && recMsg) {
 
 }
 
+const EMPLOYEE_CODE = "TUNERS2025"; // change-le
+
+const codeInput      = document.getElementById("employee-code");
+const loginBtn       = document.getElementById("employee-login-btn");
+const loginMsg       = document.getElementById("employee-login-msg");
+const loginCard      = document.getElementById("login-card");
+const employeeZone   = document.getElementById("employee-zone");
+
+if (codeInput && loginBtn && loginMsg && loginCard && employeeZone) {
+  loginBtn.addEventListener("click", () => {
+    const value = codeInput.value.trim();
+
+    if (value === EMPLOYEE_CODE) {
+      loginMsg.textContent = "Accès accordé.";
+      loginMsg.style.color = "#77dd88";
+
+      loginCard.style.display = "none";
+      employeeZone.style.display = "block";
+    } else {
+      loginMsg.textContent = "Code incorrect.";
+      loginMsg.style.color = "#ff7b7b";
+    }
+  });
+
+  codeInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      loginBtn.click();
+    }
+  });
+}
 
 const congeForm = document.getElementById("form-conge");
 const congeMsg  = document.getElementById("conge-message");
