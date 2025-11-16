@@ -467,3 +467,72 @@ textarea {
 .info-list.vertical li:last-child {
   margin-bottom: 25px; 
 }
+
+.calendar-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calendar-list li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.calendar-date {
+  min-width: 52px;
+  text-align: center;
+  border-radius: 12px;
+  padding: 6px 4px;
+  background: radial-gradient(circle at top, rgba(109,74,255,0.7), rgba(18,18,40,0.9));
+}
+
+.calendar-day {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.calendar-month {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.calendar-content {
+  font-size: 0.85rem;
+}
+
+.calendar-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.calendar-meta {
+  opacity: 0.8;
+}
+
+.guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guide-list h4 {
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.guide-list p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
