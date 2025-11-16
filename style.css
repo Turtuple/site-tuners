@@ -460,3 +460,7 @@ textarea {
   height: 22px;
   display: block;
 }
+
+#login-card .btn {
+  margin-top: 15px;
+}
