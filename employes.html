@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Espace employés - Tuners</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <div class="brand">
+        <span class="brand-logo" aria-hidden="true">🔧</span>
+        <span class="brand-name">Tuners</span>
+      </div>
+
+      <button class="nav-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Accueil</a>
+        <a href="index.html#services" class="nav-link">Services</a>
+        <a href="index.html#rdv" class="nav-link">Rendez-vous</a>
+        <a href="index.html#tarifs" class="nav-link">Tarifs</a>
+        <a href="index.html#equipe" class="nav-link">Équipe</a>
+        <a href="projets.html" class="nav-link">Projets</a>
+        <a href="recrutement.html" class="nav-link">Recrutement</a>
+        <a href="evenements.html" class="nav-link">Événements</a>
+        <a href="employes.html" class="nav-link active">Employés</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <h1>Espace employés</h1>
+        <p class="page-sub">
+          Zone interne pour l'équipe du garage Tuners. Ici, vous pouvez consulter
+          le planning, le tableau du jour et envoyer une demande de congé.
+        </p>
+
+        <!-- Bloc de connexion -->
+        <div class="card" id="login-card">
+          <h2>Connexion employés</h2>
+          <p class="page-sub">
+            Entre le code transmis par la direction pour accéder à l’espace interne.
+          </p>
+
+          <label>
+            Code d'accès
+            <input
+              type="password"
+              id="employee-code"
+              placeholder="Code transmis par la direction"
+            />
+          </label>
+
+          <button class="btn btn-primary full" id="employee-login-btn">
+            Valider
+          </button>
+
+          <p id="employee-login-msg" class="form-message"></p>
+        </div>
+
+        <!-- Zone interne (affichée seulement si code correct) -->
+        <div id="employee-zone" style="display:none; margin-top:18px;">
+
+          <!-- Planning + Tableau du jour -->
+          <div class="grid grid-2">
+
+            <!-- Planning (affichage uniquement) -->
+            <article class="card">
+              <h2>Planning de la semaine</h2>
+              <p class="page-sub">
+                Planning indicatif, à modifier directement dans le code ou en renvoyant une nouvelle version du site.
+              </p>
+
+              <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
+                <thead>
+                  <tr>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Jour
+                    </th>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Matin
+                    </th>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Soir
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:4px 4px;">Lundi</td>
+                    <td style="padding:4px 4px;">Arthur / Serge</td>
+                    <td style="padding:4px 4px;">Rico / Jack</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Mardi</td>
+                    <td style="padding:4px 4px;">Arthur</td>
+                    <td style="padding:4px 4px;">Rico</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Mercredi</td>
+                    <td style="padding:4px 4px;">Serge</td>
+                    <td style="padding:4px 4px;">Jack</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Jeudi</td>
+                    <td style="padding:4px 4px;">Arthur</td>
+                    <td style="padding:4px 4px;">Rico</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Vendredi</td>
+                    <td style="padding:4px 4px;">Serge</td>
+                    <td style="padding:4px 4px;">Jack</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Samedi</td>
+                    <td style="padding:4px 4px;">Rotation équipe</td>
+                    <td style="padding:4px 4px;">Rotation équipe</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Dimanche</td>
+                    <td style="padding:4px 4px;">Sur appel</td>
+                    <td style="padding:4px 4px;">Sur appel</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+
+            <!-- Tableau du jour (affichage) -->
+            <article class="card">
+              <h2>Tableau du jour</h2>
+              <p class="page-sub">
+                Récapitulatif de la journée. À mettre à jour manuellement dans le code si nécessaire.
+              </p>
+
+              <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
+                <thead>
+                  <tr>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Heure
+                    </th>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Responsable
+                    </th>
+                    <th style="text-align:left; padding:6px 4px; border-bottom:1px solid rgba(255,255,255,.06);">
+                      Note
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:4px 4px;">Début de journée</td>
+                    <td style="padding:4px 4px;">Arthur</td>
+                    <td style="padding:4px 4px;">Ouverture du garage, check stock.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Milieu de journée</td>
+                    <td style="padding:4px 4px;">Rico</td>
+                    <td style="padding:4px 4px;">Priorité aux rendez-vous custom.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:4px 4px;">Fin de journée</td>
+                    <td style="padding:4px 4px;">Serge</td>
+                    <td style="padding:4px 4px;">Check caisse + fermeture.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+
+          <!-- Formulaire de demande de congé -->
+          <div class="card form-card" style="margin-top:18px;">
+            <h2>Demande de congé</h2>
+            <p class="page-sub">
+              Remplis ce formulaire pour envoyer une demande de congé à la direction
+              (envoyé directement dans un salon Discord via webhook).
+            </p>
+
+            <form id="form-conge">
+              <div class="grid grid-2">
+                <label>
+                  Nom & prénom RP *
+                  <input type="text" name="nom_rp" required placeholder="Ex : Kendrick Winters" />
+                </label>
+                <label>
+                  Poste / rôle au garage *
+                  <input type="text" name="role" required placeholder="Ex : Mécano / Chef d'équipe" />
+                </label>
+              </div>
+
+              <div class="grid grid-2">
+                <label>
+                  Date de début *
+                  <input type="date" name="date_debut" required />
+                </label>
+                <label>
+                  Date de fin *
+                  <input type="date" name="date_fin" required />
+                </label>
+              </div>
+
+              <label>
+                Motif du congé *
+                <input type="text" name="motif" required placeholder="Ex : vacances, travail, études..." />
+              </label>
+
+              <label>
+                Détails supplémentaires
+                <textarea name="details" rows="4" placeholder="Infos supplémentaires, précisions sur les horaires, etc."></textarea>
+              </label>
+
+              <button type="submit" class="btn btn-primary full">
+                Envoyer la demande de congé
+              </button>
+              <p id="conge-message" class="form-message"></p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-shell">
+      <p class="footer-meta">
+        Espace interne Tuners • Code à ne pas partager en dehors du staff.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
