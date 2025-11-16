@@ -1,5 +1,6 @@
 const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438784418415251486/WNQ-CP1PVv6dLSAsQod4ZFIcUYHTACN47GPswGxWG4yufXLrRWKytTbTZcffyl9sti1U";
 const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438784604784951299/G27KS5K6HlVeWEBHDefMi6J4c1QPafBJhIl5zR6g5LUpk4meyak3RrHC7ZU17lCRbx0F";
+const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/1439666625807646926/o-a7lN_bVl3mTLpYJcR6UIxx_xX4_xJme7lGe179-lbgFPe0_11UTCX5dj4_HYYVQj25";
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
@@ -147,3 +148,59 @@ if (recForm && recMsg) {
 
 }
 
+
+const congeForm = document.getElementById("form-conge");
+const congeMsg  = document.getElementById("conge-message");
+
+if (congeForm && congeMsg) {
+  congeForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    congeMsg.textContent = "Envoi en cours…";
+    congeMsg.style.color = "#b7a8ff";
+
+    const formData   = new FormData(congeForm);
+    const nom_rp     = formData.get("nom_rp") || "—";
+    const role       = formData.get("role") || "—";
+    const dateDebut  = formData.get("date_debut") || "—";
+    const dateFin    = formData.get("date_fin") || "—";
+    const motif      = formData.get("motif") || "—";
+    const details    = formData.get("details") || "—";
+
+    const payload = {
+      username: "Tuners - Demande de congé",
+      embeds: [
+        {
+          title: "Nouvelle demande de congé",
+          color: 0xffc857,
+          fields: [
+            { name: "Nom & prénom RP", value: nom_rp, inline: false },
+            { name: "Poste / rôle", value: role, inline: false },
+            { name: "Date de début", value: dateDebut, inline: true },
+            { name: "Date de fin", value: dateFin, inline: true },
+            { name: "Motif", value: motif, inline: false },
+            {
+              name: "Détails supplémentaires",
+              value: details && details.trim().length > 0 ? details : "Aucun détail supplémentaire.",
+              inline: false
+            }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      await sendToDiscord(DISCORD_WEBHOOK_CONGE, payload);
+      congeMsg.textContent =
+        "Demande de congé envoyée sur Discord. La direction vous répondra directement.";
+      congeMsg.style.color = "#77dd88";
+      congeForm.reset();
+    } catch (err) {
+      console.error(err);
+      congeMsg.textContent =
+        "Une erreur est survenue lors de l'envoi sur Discord. Veuillez réessayer plus tard.";
+      congeMsg.style.color = "#ff7b7b";
+    }
+  });
+}
