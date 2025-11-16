@@ -37,11 +37,10 @@
 
         <h1>Portail employés</h1>
         <p class="page-sub">
-          Zone interne réservée aux employés Tuners.<br>
+          Zone interne réservée aux employés Tuners.<br />
           Entrez le code d’accès pour consulter les informations internes
           et envoyer une demande de congé.
         </p>
-
         <div class="card" id="login-card">
           <h2>Connexion employés</h2>
           <p class="page-sub">
@@ -76,7 +75,7 @@
 
               <div class="employee-month">
                 <div>
-                  <p class="employee-name">Aucun employé sélectionné pour l'instant </p>
+                  <p class="employee-name">Aucun employé sélectionné pour l'instant</p>
                 </div>
               </div>
 
@@ -133,7 +132,7 @@
           <article class="card" style="margin-top:18px;">
             <h2>Guides rapides</h2>
             <p class="page-sub">
-              Rappels importants pour garder une bonne qualité de service et un bon RP.
+              Rappels importants pour garder une bonne qualité de service.
             </p>
 
             <ul class="guide-list">
@@ -144,7 +143,7 @@
                 </p>
               </li>
               <li>
-                <h4>2. Facturation le client</h4>
+                <h4>2. Facturation du client</h4>
                 <p>
                   Facturer le client avec le menu F6. Toujours expliquer les coûts au client avant de lui facturer le service.
                 </p>
@@ -157,7 +156,9 @@
               </li>
               <li>
                 <h4>4. Fiche de paie</h4>
-                <p>Ce guide explique comment consigner correctement vos actions afin d’assurer un traitement rapide et précis de votre paie.</p>
+                <p>
+                  Ce guide explique comment consigner correctement vos actions afin d’assurer un traitement rapide et précis de votre paie.
+                </p>
 
                 <strong>Étape 1: Enregistrement d’un service</strong>
                 <p>Pour chaque service effectué en jeu :</p>
@@ -178,7 +179,7 @@
 
                 <strong>Important</strong>
                 <p>
-                  L’export Discord doit être effectué avant minuit chaque dimanche.<br>
+                  L’export Discord doit être effectué avant minuit chaque dimanche.<br />
                   Aucun export = aucune paie pour la semaine correspondante.
                 </p>
 
@@ -196,24 +197,161 @@
               Utilise la fiche pour chaque service effectué au garage.
             </p>
 
-            <div class="fiche-embed-wrapper" style="border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08);">
-              <iframe
-                src="https://turtuple.github.io/fiche-tuners/"
-                style="width:100%; min-height:700px; border:none;"
-                loading="lazy"
-              ></iframe>
-            </div>
+            <div id="fiche-root">
+              <div class="grid" style="margin-top:16px">
+
+                <section class="card">
+                  <div class="body">
+                    <h2>Ajouter une action</h2>
+
+                    <div class="row">
+                      <div>
+                        <label>Employé</label>
+                        <select id="employeeSelect"></select>
+                        <div id="employeeGradeText" class="hint">Grade: —</div>
+                      </div>
+                      <div>
+                        <label>Date</label>
+                        <input type="date" id="dateInput" />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div>
+                        <label>Type de service</label>
+                        <select id="serviceType">
+                          <option value="rep">Réparation</option>
+                          <option value="cus">Customisation</option>
+                          <option value="net">Nettoyage</option>
+                          <option value="rep_dist">Réparation à distance</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label>Montant du service</label>
+                        <input type="number" id="serviceAmount" min="0" step="1" value="500" />
+                      </div>
+                    </div>
+
+                    <div class="row" id="distanceRow" style="display:none">
+                      <div>
+                        <label>Distance (km)</label>
+                        <input type="number" id="distanceKm" min="0" step="1" value="0" />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div>
+                        <label>Total profit</label>
+                        <input id="totalToPayInput" disabled />
+                      </div>
+                      <div>
+                        <label>&nbsp;</label>
+                        <div class="actions right">
+                          <button class="btn btn-primary" id="addToWeekButton">Ajouter à la semaine</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="card">
+                  <div class="body body-week">
+                    <h2>Semaine en cours</h2>
+
+                    <div class="week-meta">
+                      <span class="pill" id="weekKeyText">—</span>
+                      <span class="muted" id="weekRangeText">—</span>
+                    </div>
+
+                    <div class="week-stats">
+                      <div class="stat">
+                        <span class="stat-value" id="weekTotalAmount">0,00 $</span>
+                        <small>Total à payer</small>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value" id="weekActionsCount">0</span>
+                        <small>Actions</small>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value" id="weekRepairsCount">0</span>
+                        <small>Réparations</small>
+                      </div>
+                      <div class="stat">
+                        <span class="stat-value" id="weekCustomsCount">0</span>
+                        <small>Customisations</small>
+                      </div>
+                    </div>
+
+                    <div class="actions right">
+                      <button class="btn btn-ghost" id="exportDiscordButton">Exporter vers Discord</button>
+                      <button class="btn btn-danger" id="clearWeekButton">Vider la semaine</button>
+                    </div>
+                  </div>
+                </section>
+
+              </div>
+
+              <section class="card" style="margin-top:18px">
+                <div class="body">
+                  <h2 style="margin:0 0 12px">Liste des actions</h2>
+
+                  <div class="search-bar">
+                    <label>Rechercher</label>
+                    <div class="search-input-wrap">
+                      <input id="searchInput" placeholder="nom, type…" />
+                      <span id="weekFilterText" class="filter-pill">Aucun filtre</span>
+                    </div>
+                  </div>
+
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Employé</th>
+                          <th>Grade</th>
+                          <th>Service</th>
+                          <th>Base ($)</th>
+                          <th>Pourcentage</th>
+                          <th>Total à payer ($)</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody id="actionsTableBody"></tbody>
+                    </table>
+                  </div>
+
+                  <div class="pager">
+                    <button class="btn btn-ghost" id="prevPageBtn" aria-label="Page précédente">◀</button>
+                    <div class="pill" id="pageInfoText">Page 0/1</div>
+                    <button class="btn btn-ghost" id="nextPageBtn" aria-label="Page suivante">▶</button>
+
+                    <div class="spacer"></div>
+
+                    <label class="pill" style="background:transparent;border:none;padding:0">
+                      Taille
+                      <select id="pageSizeSelect" style="margin-left:8px">
+                        <option value="10">10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <div class="foot">
+                « <strong>Le détail fait la différence</strong>, surtout quand tout roule. »
+              </div>
+            </div> 
           </div>
 
-          <div class="card form-card" style="margin-top:18px;">
+          <div class="card form-card" style="margin-top:26px;">
             <h2>Demande de congé</h2>
             <p class="page-sub">
-              Remplis ce formulaire pour soumettre une demande de congé à la direction.<br>
-              (La demande sera envoyée dans un salon Discord via webhook.)
+              Remplis ce formulaire pour soumettre une demande de congé à la direction.<br />
             </p>
 
             <form id="form-conge">
-
               <label>
                 Nom & prénom RP *
                 <input type="text" name="nom_rp" required placeholder="Ex : Kendrick Lamar" />
@@ -237,7 +375,7 @@
 
               <label>
                 Motif du congé *
-                <input type="text" name="motif" required placeholder="Ex : vacances, études, travail..." />
+                <input type="text" name="motif" required placeholder="Ex : vacances, études, travail." />
               </label>
 
               <label>
@@ -253,7 +391,7 @@
             </form>
           </div>
 
-        </div>
+        </div> 
 
       </div>
     </section>
