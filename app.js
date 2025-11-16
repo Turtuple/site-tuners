@@ -1,6 +1,6 @@
 const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
 const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438766083644457091/yPmTIu6CSbP4-MlXVr9BKuFc1OphM2r8unzXPWUObrDlJAcVS7R1JfZOFUmSR_9f9ZTq";
-const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/TON_WEBHOOK_CONGE_ICI";
+const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/1439666625807646926/o-a7lN_bVl3mTLpYJcR6UIxx_xX4_xJme7lGe179-lbgFPe0_11UTCX5dj4_HYYVQj25";
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
@@ -696,3 +696,4 @@ if (congeForm && congeMsg) {
 
   initSelectors();
 })();
+
