@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         embeds: [
           {
             title: "Nouvelle demande de congé",
-            color: 0xffc857,
+            color: 0x4b39c7,
             fields: [
               { name: "Nom & prénom RP", value: nom_rp, inline: false },
               { name: "Poste / rôle", value: role, inline: false },
@@ -693,5 +693,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
 
 
