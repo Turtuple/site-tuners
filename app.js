@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const rdvForm = document.getElementById("form-rdv");
   const rdvMsg  = document.getElementById("rdv-message");
-
   if (rdvForm && rdvMsg) {
     rdvForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -694,3 +693,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
