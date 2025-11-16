@@ -7,6 +7,7 @@ html, body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color: #f3f3ff;
   min-height: 100vh;
+  line-height: 1.5;
   background:
     radial-gradient(900px 520px at 70% -120px, rgba(98, 73, 201, .35), transparent 60%),
     radial-gradient(600px 300px at -10% -20%, rgba(40, 26, 92, .28), transparent 60%),
@@ -284,7 +285,15 @@ textarea {
 }
 
 .form-card button {
-  margin-top: 10px;
+  margin-top: 16px;
+}
+
+/* Spécifique au gros bouton de congé */
+#form-conge .btn.full {
+  max-width: 420px;
+  width: 100%;
+  display: block;
+  margin: 16px auto 0;  /* centré */
 }
 
 .form-message {
@@ -432,11 +441,11 @@ textarea {
   border: 3px solid #050712;
   border-radius: 999px;
 }
-
+ 
 ::-webkit-scrollbar-thumb:hover {
   background: #22233a;
-
 }
+
 .hero-title {
   display: flex;
   align-items: center;
@@ -464,6 +473,7 @@ textarea {
 #login-card .btn {
   margin-top: 15px;
 }
+
 .info-list.vertical li:last-child {
   margin-bottom: 25px; 
 }
@@ -535,4 +545,220 @@ textarea {
 .guide-list p {
   font-size: 0.85rem;
   opacity: 0.9;
+}
+
+#fiche-root {
+  margin-top: 8px;
+}
+
+#fiche-root .body {
+  padding-top: 4px;
+}
+
+#fiche-root .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+#fiche-root .row > div {
+  flex: 1 1 0;
+  min-width: 200px;
+}
+
+#fiche-root .hint {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: #8f97b3;
+}
+
+#fiche-root .week-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#fiche-root .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(114, 96, 255, 0.16);
+  border: 1px solid rgba(124, 109, 255, 0.6);
+  color: #e0defb;
+}
+
+#fiche-root .filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  background: rgba(15, 18, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #8f97b3;
+}
+
+#fiche-root .muted {
+  font-size: 0.82rem;
+  color: #8f97b3;
+}
+
+#fiche-root .week-stats {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  margin: 10px 0;
+}
+
+#fiche-root .stat {
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+#fiche-root .stat-value {
+  display: block;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: #f3f3ff;
+}
+
+#fiche-root .stat small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: #8f97b3;
+}
+
+#fiche-root .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#fiche-root .actions.right {
+  justify-content: flex-end;
+}
+
+#fiche-root .btn-danger {
+  background: linear-gradient(180deg, #e95252, #d12f2f);
+  border: none;
+  color: #fff;
+}
+
+#fiche-root .btn-danger:hover {
+  filter: brightness(1.06);
+}
+
+#fiche-root .pager .btn-ghost {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+#fiche-root .btn-ghost.btn-del {
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+#fiche-root .pill {
+  padding: 4px 12px;
+  font-size: 0.8rem;
+}
+
+#fiche-root .search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+#fiche-root .search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#fiche-root .search-input-wrap input {
+  flex: 1 1 auto;
+}
+
+#fiche-root .table-wrap {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #050712;
+  overflow: auto;
+}
+
+#fiche-root table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+#fiche-root th,
+#fiche-root td {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+#fiche-root th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em; 
+  color: #8f97b3;
+}
+
+#fiche-root tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+#fiche-root .pager {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+#fiche-root .pager .spacer {
+  flex: 1 1 auto;
+}
+
+#fiche-root .foot {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8f97b3;
+}
+
+@media (max-width: 720px) {
+  #fiche-root .row > div {
+    min-width: 100%;
+  }
+
+  #fiche-root .actions.right {
+    justify-content: flex-start;
+  }
+
+  #fiche-root .week-stats {
+    grid-template-columns: 1fr 1fr;
+  }
 }
