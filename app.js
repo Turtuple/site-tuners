@@ -325,6 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "Réparation à distance" + (r.km ? " (" + r.km + " km)" : "");
       }
       if (r.type === "net") return "Nettoyage";
+      if (r.type === "other") return "Autre";
       return r.type || "—";
     }
 
@@ -360,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const st = $("#serviceType").value;
       const row = $("#distanceRow");
       if (!row) return;
-
+    
       const amountInput = $("#serviceAmount");
       if (st === "rep") {
         amountInput.value = 800;
@@ -370,8 +371,10 @@ document.addEventListener("DOMContentLoaded", () => {
         amountInput.value = 0;
       } else if (st === "rep_dist") {
         amountInput.value = 800;
+      } else if (st === "other") {
+        amountInput.value = 0; 
       }
-
+    
       if (st === "rep_dist") {
         row.style.display = "";
       } else {
@@ -705,4 +708,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
 
