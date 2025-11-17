@@ -447,28 +447,40 @@ document.addEventListener("DOMContentLoaded", () => {
       const wk = weekKey($("#dateInput").value || isoToday());
       const all = getFiltered(wk);
       updateWeekPanel(wk, all);
-
+    
       pageSize = Number($("#pageSizeSelect").value || 20);
       const totalPages = Math.max(1, Math.ceil(all.length / pageSize));
       if (currentPage > totalPages) currentPage = totalPages;
       if (currentPage < 1) currentPage = 1;
-
+    
       const start = (currentPage - 1) * pageSize;
       const end = start + pageSize;
-
+    
       let html = "";
       if (all.length === 0) {
-        html = `<tr><td colspan="8" style="color:#9fb0c3">Aucune entrée pour la semaine ${wk}.</td></tr>`;
+        html = `<tr><td colspan="8" style="color:#9fb0c3">
+                  Aucune entrée pour la semaine ${wk}.
+                </td></tr>`;
       } else {
         for (let i = start; i < all.length && i < end; i++) {
           const r = all[i];
+    
+          const baseForDisplay =
+            r.type === "rep_dist"
+              ? (
+                  typeof r.gross !== "undefined"
+                    ? Number(r.gross)             
+                    : (Number(r.base || 0) + Number(r.distance || 0))
+                )
+              : Number(r.base || 0);
+    
           html +=
             "<tr>" +
             "<td>" + r.date + "</td>" +
             "<td>" + r.empNom + "</td>" +
             '<td><span class="pill">' + r.grade + "</span></td>" +
             "<td>" + formatServiceLabel(r) + "</td>" +
-            "<td>" + money(r.base) + "</td>" +
+            "<td>" + money(baseForDisplay) + "</td>" +         
             "<td>" + Math.round(r.pct * 100) + "%</td>" +
             "<td><strong>" + money(r.total) + "</strong></td>" +
             '<td><button class="btn btn-ghost btn-del" data-id="' + r.id + '">Supprimer</button></td>' +
@@ -476,13 +488,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       $("#actionsTableBody").innerHTML = html;
-
+    
       document.querySelectorAll(".btn-del").forEach((btn) => {
         btn.addEventListener("click", (ev) =>
           removeRow(ev.currentTarget.getAttribute("data-id"))
         );
       });
-
+    
       $("#pageInfoText").textContent =
         "Page " + (all.length ? currentPage : 0) + "/" + totalPages;
     }
@@ -693,3 +705,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
