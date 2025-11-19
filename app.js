@@ -272,15 +272,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function isoToday() {
       const d = new Date();
-      d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-      return d.toISOString().slice(0, 10);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    }
+
+    function parseLocalISODate(iso) {
+      const [y, m, d] = iso.split("-").map(Number);
+      return new Date(y, m - 1, d);
     }
 
     function weekKey(iso) {
-      const d = new Date(iso);
+      const d = parseLocalISODate(iso);
       const target = new Date(d.valueOf());
       const dayNr = (d.getDay() + 6) % 7;
-      target.setDate(target.getDate() - dayNr + 3);
+      target.setDate(target.getDate() - dayNr + 3); 
+
       const firstThu = new Date(target.getFullYear(), 0, 4);
       const week =
         1 +
@@ -291,12 +299,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function weekRange(iso) {
-      const d = new Date(iso || isoToday());
-      const day = (d.getDay() + 6) % 7;
+      const d = parseLocalISODate(iso || isoToday());
+      const day = (d.getDay() + 6) % 7; 
       const mon = new Date(d);
-      mon.setDate(d.getDate() - day);
+      mon.setDate(d.getDate() - day);   
       const sun = new Date(mon);
-      sun.setDate(mon.getDate() + 6);
+      sun.setDate(mon.getDate() + 6);   
       const f = (x) => x.toLocaleDateString("fr-CA");
       return { start: f(mon), end: f(sun) };
     }
@@ -708,6 +716,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
-
-
-
