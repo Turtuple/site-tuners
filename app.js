@@ -371,16 +371,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!row) return;
     
       const amountInput = $("#serviceAmount");
+      if (!amountInput) return;
+    
+      amountInput.readOnly = false;
+    
       if (st === "rep") {
         amountInput.value = 800;
+        amountInput.readOnly = true;
       } else if (st === "net") {
         amountInput.value = 200;
-      } else if (st === "cus") {
-        amountInput.value = 0;
+        amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.value = 800;
+        amountInput.readOnly = true;
+      } else if (st === "cus") {
+        amountInput.value = 0;
       } else if (st === "other") {
-        amountInput.value = 0; 
+        amountInput.value = 0;
       }
     
       if (st === "rep_dist") {
@@ -390,6 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const kmInput = $("#distanceKm");
         if (kmInput) kmInput.value = 0;
       }
+    
       computeAndShow();
     }
 
@@ -716,3 +724,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
+
