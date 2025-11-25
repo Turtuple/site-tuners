@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const details   = formData.get("details") || "—";
 
       const payload = {
-        username: "Tuners - Rendez-vous",
+        username: "Bennys - Rendez-vous",
         embeds: [
           {
             title: "Nouvelle demande de rendez-vous",
@@ -111,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const pqtoi    = formData.get("pqtoi") || "—";
 
       const payload = {
-        username: "Tuners - Recrutement",
+        username: "Bennys - Recrutement",
         embeds: [
           {
-            title: "Nouvelle candidature Tuners",
+            title: "Nouvelle candidature Bennys",
             color: 0x4b39c7,
             fields: [
               { name: "Pseudo Discord", value: discord, inline: false },
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const EMPLOYEE_CODE = "TUNERS2025";
+  const EMPLOYEE_CODE = "BENNYS2025";
 
   const codeInput      = document.getElementById("employee-code");
   const loginBtn       = document.getElementById("employee-login-btn");
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const details    = formData.get("details") || "—";
 
       const payload = {
-        username: "Tuners - Demande de congé",
+        username: "Bennys - Demande de congé",
         embeds: [
           {
             title: "Nouvelle demande de congé",
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  (function initFicheTuners() {
+  (function initFicheBennys() {
     const ficheRoot = document.getElementById("fiche-root");
     if (!ficheRoot) return;
 
@@ -724,4 +724,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 });
-
