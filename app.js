@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1438784418415251486/WNQ-CP1PVv6dLSAsQod4ZFIcUYHTACN47GPswGxWG4yufXLrRWKytTbTZcffyl9sti1U";
-  const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1438784604784951299/G27KS5K6HlVeWEBHDefMi6J4c1QPafBJhIl5zR6g5LUpk4meyak3RrHC7ZU17lCRbx0F";
-  const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/1439666625807646926/o-a7lN_bVl3mTLpYJcR6UIxx_xX4_xJme7lGe179-lbgFPe0_11UTCX5dj4_HYYVQj25";
 
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
@@ -235,9 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   (function initFicheBennys() {
-    const ficheRoot = document.getElementById("fiche-root");
-    if (!ficheRoot) return;
-
     const GRADE_PCT = {
       "Apprenti": 0.15,
       "Expert": 0.25,
@@ -255,11 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const LS_KEY     = "fiche_paie_entries_v6";
     const LS_EMP_KEY = "fiche_paie_selected_employee_v1";
-
-    const DISCORD_WEBHOOK_FICHE  =
-      "https://discordapp.com/api/webhooks/1438918928951672882/3tufNFwGiXhDwFi4nDF8YmIGaz1I1ymGWIpLNoCA3Venv1uIOQkeuod6Zc4mdwBOqtaQ";
-    const DISCORD_WEBHOOK_ENTREE =
-      "https://discordapp.com/api/webhooks/1438915757898469386/dZ7HjeO-pU4O9y_NL_-KTb7eb8Jjt0ohG-aiZsfb2cCnKG0EruTKq4_buCvYp_3dFkRk";
 
     const ENABLE_DISCORD_LOG_ON_ADD = true;
 
@@ -287,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const d = parseLocalISODate(iso);
       const target = new Date(d.valueOf());
       const dayNr = (d.getDay() + 6) % 7;
-      target.setDate(target.getDate() - dayNr + 3); 
+      target.setDate(target.getDate() - dayNr + 3);
 
       const firstThu = new Date(target.getFullYear(), 0, 4);
       const week =
@@ -300,11 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function weekRange(iso) {
       const d = parseLocalISODate(iso || isoToday());
-      const day = (d.getDay() + 6) % 7; 
+      const day = (d.getDay() + 6) % 7;
       const mon = new Date(d);
-      mon.setDate(d.getDate() - day);   
+      mon.setDate(d.getDate() - day);
       const sun = new Date(mon);
-      sun.setDate(mon.getDate() + 6);   
+      sun.setDate(mon.getDate() + 6);
       const f = (x) => x.toLocaleDateString("fr-CA");
       return { start: f(mon), end: f(sun) };
     }
@@ -369,12 +358,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const st = $("#serviceType").value;
       const row = $("#distanceRow");
       if (!row) return;
-    
+
       const amountInput = $("#serviceAmount");
       if (!amountInput) return;
-    
+
       amountInput.readOnly = false;
-    
+
       if (st === "rep") {
         amountInput.value = 800;
         amountInput.readOnly = true;
@@ -389,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (st === "other") {
         amountInput.value = 0;
       }
-    
+
       if (st === "rep_dist") {
         row.style.display = "";
       } else {
@@ -397,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const kmInput = $("#distanceKm");
         if (kmInput) kmInput.value = 0;
       }
-    
+
       computeAndShow();
     }
 
@@ -466,15 +455,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const wk = weekKey($("#dateInput").value || isoToday());
       const all = getFiltered(wk);
       updateWeekPanel(wk, all);
-    
+
       pageSize = Number($("#pageSizeSelect").value || 20);
       const totalPages = Math.max(1, Math.ceil(all.length / pageSize));
       if (currentPage > totalPages) currentPage = totalPages;
       if (currentPage < 1) currentPage = 1;
-    
+
       const start = (currentPage - 1) * pageSize;
       const end = start + pageSize;
-    
+
       let html = "";
       if (all.length === 0) {
         html = `<tr><td colspan="8" style="color:#9fb0c3">
@@ -483,23 +472,23 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         for (let i = start; i < all.length && i < end; i++) {
           const r = all[i];
-    
+
           const baseForDisplay =
             r.type === "rep_dist"
               ? (
                   typeof r.gross !== "undefined"
-                    ? Number(r.gross)             
+                    ? Number(r.gross)
                     : (Number(r.base || 0) + Number(r.distance || 0))
                 )
               : Number(r.base || 0);
-    
+
           html +=
             "<tr>" +
             "<td>" + r.date + "</td>" +
             "<td>" + r.empNom + "</td>" +
             '<td><span class="pill">' + r.grade + "</span></td>" +
             "<td>" + formatServiceLabel(r) + "</td>" +
-            "<td>" + money(baseForDisplay) + "</td>" +         
+            "<td>" + money(baseForDisplay) + "</td>" +
             "<td>" + Math.round(r.pct * 100) + "%</td>" +
             "<td><strong>" + money(r.total) + "</strong></td>" +
             '<td><button class="btn btn-ghost btn-del" data-id="' + r.id + '">Supprimer</button></td>' +
@@ -507,13 +496,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       $("#actionsTableBody").innerHTML = html;
-    
+
       document.querySelectorAll(".btn-del").forEach((btn) => {
         btn.addEventListener("click", (ev) =>
           removeRow(ev.currentTarget.getAttribute("data-id"))
         );
       });
-    
+
       $("#pageInfoText").textContent =
         "Page " + (all.length ? currentPage : 0) + "/" + totalPages;
     }
@@ -723,4 +712,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initSelectors();
   })();
+
+  const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1443003968736329829/LcfXJEhynf9TTw8lUgK46_aMx2u-RqxYKlSvYcaM_BKxQaot17ygua3r7mqQTersINm5";
+  const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1443006788545810575/GtfssDa_CsZTrLwzV14XDFbbKrkltninMve5ReBDZWIx2eMw3pTUboZNKGoyKfThQk4n";
+  const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/1443006980037017661/HvvAqcYe4CJ8GMUnVxmh_jtsFYLniL5qJLLRrQPBR8joGFmmbfNNccp2SA5Cs6VGhBAB";
+
+  const DISCORD_WEBHOOK_FICHE  =
+    "https://discordapp.com/api/webhooks/1443007202683130017/jF6fD4GJLktyd9XWL352uVmZKRs5WNnJr92ig542LKuBgmtt_1NaUIGACovySIfK1DMU";
+  const DISCORD_WEBHOOK_ENTREE =
+    "https://discordapp.com/api/webhooks/1443007088056995954/5cexKwaOG3jNTi-7DrRHS8APy9S17xYbktm1PwVViOV6PpDzc2BDCwIFOp6mUkNsvOsG";
 });
