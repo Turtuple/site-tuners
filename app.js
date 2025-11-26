@@ -242,9 +242,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const EMP = [
       { id: "arthur", nom: "Arthur Blackwood", grade: "Propriétaire" },
-      { id: "rico",   nom: "Rico Blackwood",   grade: "Responsable" },
-      { id: "olsh",   nom: "Jack Blackwood",   grade: "Chef d’équipe" },
-      { id: "tot",    nom: "Serge Blackwood",  grade: "Chef d’équipe" }
+      { id: "rico", nom: "Rico Blackwood", grade: "Responsable" },
+      { id: "olsh", nom: "Jack Blackwood", grade: "Chef d’équipe" },
+      { id: "tot", nom: "Serge Blackwood", grade: "Chef d’équipe" },
+      { id: "mich", nom: "Michel Blackwood", grade: "Apprenti" },
     ];
 
     const LS_KEY     = "fiche_paie_entries_v6";
@@ -722,3 +723,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_ENTREE =
     "https://discordapp.com/api/webhooks/1443007088056995954/5cexKwaOG3jNTi-7DrRHS8APy9S17xYbktm1PwVViOV6PpDzc2BDCwIFOp6mUkNsvOsG";
 });
+
