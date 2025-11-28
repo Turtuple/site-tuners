@@ -791,4 +791,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
   })();
+
+  const v = document.getElementById("bg-music");
+  if (v) v.volume = 0.2;
 });
