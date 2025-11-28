@@ -1,5 +1,3 @@
-Here is the full JS with the requested behavior (Réparation à distance updates the “Montant du service” when KM changes), no comments:
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const toggle = document.querySelector(".nav-toggle");
