@@ -480,7 +480,8 @@ document.addEventListener("DOMContentLoaded", () => {
         gross: totalBeforePct,
         total,
         type: st,
-        emp: e
+        emp: e,
+        half: isHalf
       };
     }
 
@@ -606,7 +607,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const distance = Number(r.distance) || 0;
           const base     = Number(r.base) || 0;
           const gross    =
-            typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
+          typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
+          const halfTag  = r.half ? " [50% appliqué]" : "";
 
           return (
             `${r.date} | ${r.empNom} | ${r.grade} | ${formatServiceLabel(r)}` +
@@ -616,7 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
               : "") +
             ` | brut ${money(gross)}` +
             ` | ${Math.round(r.pct * 100)}%` +
-            ` => ${money(r.total)}`
+            ` => ${money(r.total)}${halfTag}` 
           );
         })
         .join("\n");
@@ -679,7 +681,8 @@ document.addEventListener("DOMContentLoaded", () => {
         distance: c.distance,
         gross: c.gross,
         pct: c.pct,
-        total: c.total
+        total: c.total,
+        half: c.half
       };
 
       entries.push(rec);
@@ -689,6 +692,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (ENABLE_DISCORD_LOG_ON_ADD) {
         const wk = weekKey(rec.date);
+        const halfTag = rec.half ? " [50% appliqué]" : "";
+
         const t  =
           "**NOUVELLE ENTRÉE (" + rec.empNom + ") — Semaine " + wk + "**\n" +
           "```\n" +
@@ -701,6 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
           " | brut " + money(rec.gross) +
           " | " + Math.round(rec.pct * 100) + "%" +
           " => " + money(rec.total) +
+          halfTag +                        
           "\n```";
 
         sendDiscord(t, "entree");
