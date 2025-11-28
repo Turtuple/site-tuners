@@ -587,6 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let totalPay  = 0;
       let rep       = 0;
       let cus       = 0;
+      let net       = 0;
 
       for (let i = 0; i < list.length; i++) {
         const r        = list[i];
@@ -600,6 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (r.type === "rep" || r.type === "rep_dist") rep++;
         if (r.type === "cus") cus++;
+        if (r.type === "net") net++;
       }
 
       const lines = list
@@ -607,25 +609,23 @@ document.addEventListener("DOMContentLoaded", () => {
           const distance = Number(r.distance) || 0;
           const base     = Number(r.base) || 0;
           const gross    =
-          typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
-          const halfTag  = r.half ? " [50% appliqué]" : "";
+            typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
+          const halfTag  = r.half ? " [50%]" : "";
 
           return (
             `${r.date} | ${r.empNom} | ${r.grade} | ${formatServiceLabel(r)}` +
-            ` | base ${money(base)}` +
+            ` | valeur: ${money(gross)}${halfTag}` +
             (r.type === "rep_dist"
               ? ` | dist ${money(distance)} | km:${r.km}`
               : "") +
-            ` | brut ${money(gross)}` +
-            ` | ${Math.round(r.pct * 100)}%` +
-            ` => ${money(r.total)}${halfTag}` 
+            ` | revenu: ${money(r.total)}`
           );
         })
         .join("\n");
 
       return (
         `**FICHE DE PAIE (${name}) — Semaine ${wk}**\n` +
-        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus}\n` +
+        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus} | Nettoyages: ${net}\n` +
         "```" + "\n" +
         (lines || "Aucune entrée") +
         "\n```"
@@ -692,21 +692,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (ENABLE_DISCORD_LOG_ON_ADD) {
         const wk = weekKey(rec.date);
-        const halfTag = rec.half ? " [50% appliqué]" : "";
+        const halfTag = rec.half ? " [50%]" : "";
+
+        const distance = Number(rec.distance) || 0;
+        const base     = Number(rec.base) || 0;
+        const gross    =
+          typeof rec.gross !== "undefined" ? Number(rec.gross) : base + distance;
 
         const t  =
           "**NOUVELLE ENTRÉE (" + rec.empNom + ") — Semaine " + wk + "**\n" +
           "```\n" +
           rec.date + " | " + rec.empNom + " | " + rec.grade + " | " +
           formatServiceLabel(rec) +
-          " | base " + money(rec.base) +
+          " | valeur: " + money(gross) + halfTag +
           (rec.type === "rep_dist"
-            ? " | dist " + money(rec.distance) + " | km:" + rec.km
+            ? " | dist " + money(distance) + " | km:" + rec.km
             : "") +
-          " | brut " + money(rec.gross) +
-          " | " + Math.round(rec.pct * 100) + "%" +
-          " => " + money(rec.total) +
-          halfTag +                        
+          " | revenu: " + money(rec.total) +
           "\n```";
 
         sendDiscord(t, "entree");
