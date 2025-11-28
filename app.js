@@ -556,13 +556,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
               : Number(r.base || 0);
 
+          const halfTag = r.half
+            ? ' <span class="half-pill">[50%]</span>'
+            : "";
+
           html +=
             "<tr>" +
             "<td>" + r.date + "</td>" +
             "<td>" + r.empNom + "</td>" +
             '<td><span class="pill">' + r.grade + "</span></td>" +
             "<td>" + formatServiceLabel(r) + "</td>" +
-            "<td>" + money(baseForDisplay) + "</td>" +
+            "<td>" + money(baseForDisplay) + halfTag + "</td>" +
             "<td>" + Math.round(r.pct * 100) + "%</td>" +
             "<td><strong>" + money(r.total) + "</strong></td>" +
             '<td><button class="btn btn-ghost btn-del" data-id="' + r.id + '">Supprimer</button></td>' +
