@@ -722,5 +722,73 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://discordapp.com/api/webhooks/1443007202683130017/jF6fD4GJLktyd9XWL352uVmZKRs5WNnJr92ig542LKuBgmtt_1NaUIGACovySIfK1DMU";
   const DISCORD_WEBHOOK_ENTREE =
     "https://discordapp.com/api/webhooks/1443007088056995954/5cexKwaOG3jNTi-7DrRHS8APy9S17xYbktm1PwVViOV6PpDzc2BDCwIFOp6mUkNsvOsG";
-});
 
+    (function initSnow() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (prefersReducedMotion.matches) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.id = "snow-canvas";
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    const FLAKE_COUNT = 120;
+    const flakes = [];
+
+    function createFlake() {
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: 1 + Math.random() * 3,             
+        speedY: 0.5 + Math.random() * 1.5,       
+        speedX: -0.5 + Math.random(),         
+        opacity: 0.4 + Math.random() * 0.6    
+      };
+    }
+
+    for (let i = 0; i < FLAKE_COUNT; i++) {
+      flakes.push(createFlake());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < flakes.length; i++) {
+        const f = flakes[i];
+
+        f.y += f.speedY;
+        f.x += f.speedX;
+
+        if (f.y > height + 5) {
+          f.y = -10;
+          f.x = Math.random() * width;
+        }
+        if (f.x > width + 5) {
+          f.x = -5;
+        } else if (f.x < -5) {
+          f.x = width + 5;
+        }
+
+        ctx.beginPath();
+        ctx.globalAlpha = f.opacity;
+        ctx.fillStyle = "#ffffff";
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  })();
+});
