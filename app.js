@@ -316,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pageSize    = 20;
 
     const PRICE_PER_KM = 100;
+    const KIT_PRICE    = 500; 
 
     function formatServiceLabel(r) {
       if (r.type === "rep")      return "Réparation";
@@ -324,6 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "Réparation à distance";
       }
       if (r.type === "net")      return "Nettoyage";
+      if (r.type === "kit")      return "Vente kit de réparation"; 
       if (r.type === "other")    return "Autre";
       return r.type || "—";
     }
@@ -386,12 +388,33 @@ document.addEventListener("DOMContentLoaded", () => {
       computeAndShow();
     }
 
+    function updateKitAmount() {
+      const st          = $("#serviceType").value;
+      const kitsInput   = $("#kitsCount");
+      const amountInput = $("#serviceAmount");
+
+      if (!kitsInput || !amountInput || st !== "kit") {
+        computeAndShow();
+        return;
+      }
+
+      const qty = Number(kitsInput.value || 0);
+      const total = qty * KIT_PRICE;
+
+      amountInput.value = total;
+
+      computeAndShow();
+    }
+
     function updateServiceFields() {
       const st          = $("#serviceType").value;
       const row         = $("#distanceRow");
+      const kitsRow     = $("#kitsRow");    
       const amountInput = $("#serviceAmount");
+      const kmInput     = $("#distanceKm");
+      const kitsInput   = $("#kitsCount");    
 
-      if (!row || !amountInput) return;
+      if (!amountInput) return;
 
       const showDiscount = st === "rep" || st === "net" || st === "rep_dist";
 
@@ -424,22 +447,38 @@ document.addEventListener("DOMContentLoaded", () => {
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
+      } else if (st === "kit") { 
+        amountInput.readOnly = true;
+        const qty = kitsInput ? Number(kitsInput.value || 0) : 0;
+        amountInput.value = qty * KIT_PRICE;
       } else if (st === "cus") {
         amountInput.value = 0;
       } else if (st === "other") {
         amountInput.value = 0;
       }
 
-      if (st === "rep_dist") {
-        row.style.display = "";
-      } else {
-        row.style.display = "none";
-        const kmInput = $("#distanceKm");
-        if (kmInput) kmInput.value = 0;
+      if (row) {
+        if (st === "rep_dist") {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+          if (kmInput) kmInput.value = 0;
+        }
+      }
+
+      if (kitsRow) {
+        if (st === "kit") {
+          kitsRow.style.display = "";
+        } else {
+          kitsRow.style.display = "none";
+          if (kitsInput) kitsInput.value = 0;
+        }
       }
 
       if (st === "rep_dist") {
         updateDistanceAndAmount();
+      } else if (st === "kit") {
+        updateKitAmount();
       } else {
         computeAndShow();
       }
@@ -450,8 +489,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
       const st  = $("#serviceType").value;
 
-      const kmInput = $("#distanceKm");
-      const km      = kmInput ? Number(kmInput.value || 0) : 0;
+      const kmInput   = $("#distanceKm");
+      const km        = kmInput ? Number(kmInput.value || 0) : 0;
+      const kitsInput = $("#kitsCount");                     
+      const kits      = kitsInput ? Number(kitsInput.value || 0) : 0; 
 
       const isHalf = isHalfPriceEnabled();
 
@@ -465,6 +506,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (st === "rep_dist") {
         base          = isHalf ? 400 : 800;
         distanceTotal = km * PRICE_PER_KM;
+      } else if (st === "kit") { 
+        base = kits * KIT_PRICE;
       } else {
         base = Number($("#serviceAmount").value || 0);
       }
@@ -476,6 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pct,
         base,
         km,
+        kits,             
         distance: distanceTotal,
         gross: totalBeforePct,
         total,
@@ -592,6 +636,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let rep       = 0;
       let cus       = 0;
       let net       = 0;
+      let kit       = 0; 
 
       for (let i = 0; i < list.length; i++) {
         const r        = list[i];
@@ -606,6 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (r.type === "rep" || r.type === "rep_dist") rep++;
         if (r.type === "cus") cus++;
         if (r.type === "net") net++;
+        if (r.type === "kit") kit++;
       }
 
       const lines = list
@@ -616,20 +662,27 @@ document.addEventListener("DOMContentLoaded", () => {
             typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
           const halfTag  = r.half ? " [50%]" : "";
 
+          let extra = "";
+          if (r.type === "rep_dist") {
+            extra =
+              ` | Prix distance: ${money(distance)} | Distance: ${r.km} km`;
+          } else if (r.type === "kit") {
+            const qty = typeof r.kits !== "undefined" ? r.kits : 0;
+            extra = ` | Quantité: ${qty}`;
+          }
+
           return (
             `${r.date} | ${r.empNom} | ${r.grade} | ${formatServiceLabel(r)}` +
-            ` | valeur: ${money(gross)}${halfTag}` +
-            (r.type === "rep_dist"
-              ? ` | Prix distance: ${money(distance)} | Distance: ${r.km} km`
-              : "") +
-            ` | revenu: ${money(r.total)}`
+            ` | Valeur: ${money(gross)}${halfTag}` +
+            extra +
+            ` | Revenu: ${money(r.total)}`
           );
         })
         .join("\n");
 
       return (
         `**FICHE DE PAIE (${name}) — Semaine ${wk}**\n` +
-        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus} | Nettoyages: ${net}\n` +
+        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus} | Nettoyages: ${net} | Kits: ${kit}\n` +
         "```" + "\n" +
         (lines || "Aucune entrée") +
         "\n```"
@@ -681,6 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grade: c.emp.grade,
         type: c.type,
         km: c.km,
+        kits: c.kits,         
         base: c.base,
         distance: c.distance,
         gross: c.gross,
@@ -703,16 +757,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const gross    =
           typeof rec.gross !== "undefined" ? Number(rec.gross) : base + distance;
 
+        let extra = "";
+        if (rec.type === "rep_dist") {
+          extra =
+            " | Prix distance: " + money(distance) + " | Distance: " + rec.km + " km";
+        } else if (rec.type === "kit") { 
+          const qty = typeof rec.kits !== "undefined" ? rec.kits : 0;
+          extra = " | Quantité: " + qty;
+        }
+
         const t  =
           "**NOUVELLE ENTRÉE (" + rec.empNom + ") — Semaine " + wk + "**\n" +
           "```\n" +
           rec.date + " | " + rec.empNom + " | " + rec.grade + " | " +
           formatServiceLabel(rec) +
-          " | valeur: " + money(gross) + halfTag +
-          (rec.type === "rep_dist"
-            ? " | Prix distance: " + money(distance) + " | Distance: " + rec.km + " km"
-            : "") +
-          " | revenu: " + money(rec.total) +
+          " | Valeur: " + money(gross) + halfTag +
+          extra +
+          " | Revenu: " + money(rec.total) +
           "\n```";
 
         sendDiscord(t, "entree");
@@ -751,6 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviceTypeEl        = $("#serviceType");
     const serviceAmountEl      = $("#serviceAmount");
     const distanceKmEl         = $("#distanceKm");
+    const kitsCountEl          = document.getElementById("kitsCount"); 
     const searchInputEl        = $("#searchInput");
     const addToWeekBtn         = $("#addToWeekButton");
     const clearWeekBtn         = $("#clearWeekButton");
@@ -780,6 +842,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (distanceKmEl) {
       distanceKmEl.addEventListener("input", updateDistanceAndAmount);
+    }
+
+    if (kitsCountEl) { 
+      kitsCountEl.addEventListener("input", updateKitAmount);
     }
 
     if (halfPriceCheckboxEl) {
