@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (r.type === "rep")      return "Réparation";
       if (r.type === "cus")      return "Customisation";
       if (r.type === "rep_dist") {
-        return "Réparation à distance" + (r.km ? " (" + r.km + " km)" : "");
+        return "Réparation à distance";
       }
       if (r.type === "net")      return "Nettoyage";
       if (r.type === "other")    return "Autre";
@@ -620,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `${r.date} | ${r.empNom} | ${r.grade} | ${formatServiceLabel(r)}` +
             ` | valeur: ${money(gross)}${halfTag}` +
             (r.type === "rep_dist"
-              ? ` | dist ${money(distance)} | km:${r.km}`
+              ? ` | Prix distance: ${money(distance)} | Distance: ${r.km} km`
               : "") +
             ` | revenu: ${money(r.total)}`
           );
@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
           formatServiceLabel(rec) +
           " | valeur: " + money(gross) + halfTag +
           (rec.type === "rep_dist"
-            ? " | dist " + money(distance) + " | km:" + rec.km
+            ? " | Prix distance: " + money(distance) + " | Distance: " + rec.km + " km"
             : "") +
           " | revenu: " + money(rec.total) +
           "\n```";
