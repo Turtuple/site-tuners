@@ -791,7 +791,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
   })();
-
+  
   const music = document.getElementById('bg-music');
   let started = false;
   
@@ -801,10 +801,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!started) {
           music.play().then(() => {
               started = true;
-              console.log('Music started');
-          }).catch(err => {
-              console.error('Music play error:', err);
-          });
+              music.volume = 0.1; 
+          }).catch(() => {});
       }
   }, { once: true });
 });
