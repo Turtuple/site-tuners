@@ -1,3 +1,5 @@
+Here is the full JS with the requested behavior (Réparation à distance updates the “Montant du service” when KM changes), no comments:
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const toggle = document.querySelector(".nav-toggle");
@@ -394,7 +396,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function currentCalc() {
       const e = EMP.find((x) => x.id === $("#employeeSelect").value);
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
-      const base = Number($("#serviceAmount").value || 0);
+      const type = $("#serviceType").value;
+
+      let base;
+      if (type === "rep") {
+        base = 800;
+      } else if (type === "net") {
+        base = 200;
+      } else if (type === "rep_dist") {
+        base = 800;
+      } else {
+        base = Number($("#serviceAmount").value || 0);
+      }
 
       const kmInput = $("#distanceKm");
       const km = kmInput ? Number(kmInput.value || 0) : 0;
@@ -410,13 +423,20 @@ document.addEventListener("DOMContentLoaded", () => {
         distance: distanceTotal,
         gross: totalBeforePct,
         total,
-        type: $("#serviceType").value,
+        type,
         emp: e
       };
     }
 
     function computeAndShow() {
-      $("#totalToPayInput").value = money(currentCalc().total);
+      const calc = currentCalc();
+      if (calc.type === "rep_dist") {
+        const amountInput = $("#serviceAmount");
+        if (amountInput) {
+          amountInput.value = calc.gross;
+        }
+      }
+      $("#totalToPayInput").value = money(calc.total);
     }
 
     function getFiltered(wk) {
@@ -749,10 +769,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return {
         x: Math.random() * width,
         y: Math.random() * height,
-        r: 1 + Math.random() * 3,             
-        speedY: 0.5 + Math.random() * 1.5,       
-        speedX: -0.5 + Math.random(),         
-        opacity: 0.4 + Math.random() * 0.6    
+        r: 1 + Math.random() * 3,
+        speedY: 0.5 + Math.random() * 1.5,
+        speedX: -0.5 + Math.random(),
+        opacity: 0.4 + Math.random() * 0.6
       };
     }
 
@@ -801,7 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (audioEl && toggleBtn && volumeEl) {
 
     let prefs = { volume: 0.2, muted: false };
-    try { 
+    try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (saved) prefs = saved;
     } catch {}
@@ -822,11 +842,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (audioEl.paused) {
         audioEl.play().catch(() => {});
         audioEl.muted = false;
-        toggleBtn.textContent = "⏸"; 
+        toggleBtn.textContent = "⏸";
         toggleBtn.classList.remove("muted");
       } else {
         audioEl.pause();
-        toggleBtn.textContent = "▶"; 
+        toggleBtn.textContent = "▶";
       }
       savePrefs();
     });
@@ -841,6 +861,6 @@ document.addEventListener("DOMContentLoaded", () => {
       savePrefs();
     });
 
-    toggleBtn.textContent = "▶"; 
+    toggleBtn.textContent = "▶";
   }
 });
