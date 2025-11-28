@@ -790,16 +790,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     animate();
-  })();
+  })()
 
-  document.addEventListener("click", () => {
-  const m = document.getElementById("bg-music");
-  if (m && m.paused) {
-      m.play().catch(() => {});
-    }
-  }, { once: true });
+  const audioEl   = document.getElementById("bg-music");
+  const toggleBtn = document.getElementById("music-toggle");
+  const volumeEl  = document.getElementById("music-volume");
 
-  const v = document.getElementById("bg-music");
-  if (v) v.volume = 0.1;
+  const STORAGE_KEY = "bennys_music_prefs_v1";
 
+  if (audioEl && toggleBtn && volumeEl) {
+
+    let prefs = { volume: 0.2, muted: false };
+    try { 
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (saved) prefs = saved;
+    } catch {}
+
+    audioEl.volume = prefs.volume;
+    audioEl.muted  = prefs.muted;
+    volumeEl.value = Math.round(prefs.volume * 100);
+    if (prefs.muted) toggleBtn.classList.add("muted");
+
+    const savePrefs = () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        volume: audioEl.volume,
+        muted: audioEl.muted
+      }));
+    };
+
+    toggleBtn.addEventListener("click", () => {
+      if (audioEl.paused) {
+        audioEl.play().catch(() => {});
+        audioEl.muted = false;
+        toggleBtn.textContent = "⏸"; 
+        toggleBtn.classList.remove("muted");
+      } else {
+        audioEl.pause();
+        toggleBtn.textContent = "▶"; 
+      }
+      savePrefs();
+    });
+
+    volumeEl.addEventListener("input", () => {
+      const v    = Math.max(0, Math.min(100, Number(volumeEl.value) || 0));
+      const norm = v / 100;
+      audioEl.volume = norm;
+      audioEl.muted  = norm === 0;
+      if (audioEl.muted) toggleBtn.classList.add("muted");
+      else toggleBtn.classList.remove("muted");
+      savePrefs();
+    });
+
+    toggleBtn.textContent = "▶"; 
+  }
 });
