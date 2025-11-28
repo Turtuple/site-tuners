@@ -291,7 +291,24 @@
     </div>
   </footer>
 
-  <audio id="bg-music" src="music/christmas.mp3" loop style="display: none;"></audio>
+  <audio id="bg-music" src="music/christmas.mp3" loop style="display:none"></audio>
+
+  <div class="music-controls" id="music-controls">
+    <button class="music-mute-btn" id="music-toggle" aria-label="Activer la musique">
+      ▶
+    </button>
+    <input
+      type="range"
+      class="music-vol"
+      id="music-volume"
+      min="0"
+      max="100"
+      step="1"
+      value="20"
+      aria-label="Volume de la musique"
+    />
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
