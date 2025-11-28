@@ -792,6 +792,13 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
   })();
 
+  document.addEventListener("click", () => {
+  const m = document.getElementById("bg-music");
+  if (m && m.paused) {
+      m.play().catch(() => {});
+    }
+  }, { once: true });
+
   const v = document.getElementById("bg-music");
   if (v) v.volume = 0.2;
 });
