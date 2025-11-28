@@ -229,20 +229,33 @@
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div>
+                    <div class="row row-bottom">
+                      <div class="col-half">
                         <label>Total profit</label>
                         <input id="totalToPayInput" disabled />
                       </div>
-                      <div>
+
+                      <div class="col-half">
                         <label>&nbsp;</label>
-                        <div class="actions right">
-                          <button class="btn btn-primary" id="addToWeekButton">Ajouter à la semaine</button>
+                        <div class="row row-inline" id="discountRowInline">
+                          <div class="discount-col" id="discountCol">
+                            <label class="discount-toggle">
+                              <input type="checkbox" id="halfPriceCheckbox" />
+                              <span>50% Réduction (service d'urgence)</span>
+                            </label>
+                          </div>
+
+                          <div class="actions actions--with-btn">
+                            <button class="btn btn-primary" id="addToWeekButton">
+                              Ajouter à la semaine
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </section>
+
                 <section class="card">
                   <div class="body body-week">
                     <h2>Semaine en cours</h2>
