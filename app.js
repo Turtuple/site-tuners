@@ -723,7 +723,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_ENTREE =
     "https://discordapp.com/api/webhooks/1443007088056995954/5cexKwaOG3jNTi-7DrRHS8APy9S17xYbktm1PwVViOV6PpDzc2BDCwIFOp6mUkNsvOsG";
 
-    (function initSnow() {
+  (function initSnow() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (prefersReducedMotion.matches) return;
 
@@ -791,18 +791,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
   })();
-  
-  const music = document.getElementById('bg-music');
-  let started = false;
-  
-  music.volume = 0.1; 
-  
-  document.addEventListener('click', () => {
-      if (!started) {
-          music.play().then(() => {
-              started = true;
-              music.volume = 0.1; 
-          }).catch(() => {});
-      }
+
+  document.addEventListener("click", () => {
+  const m = document.getElementById("bg-music");
+  if (m && m.paused) {
+      m.play().catch(() => {});
+    }
   }, { once: true });
+
+  const v = document.getElementById("bg-music");
+  if (v) v.volume = 0.1;
+
 });
