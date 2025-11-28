@@ -792,13 +792,17 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
   })();
 
-  document.addEventListener("click", () => {
-  const m = document.getElementById("bg-music");
-  if (m && m.paused) {
-      m.play().catch(() => {});
-    }
-  }, { once: true });
+    const music = document.getElementById('bg-music');
+    let started = false;
 
-  const v = document.getElementById("bg-music");
-  if (v) v.volume = 0.2;
+    document.addEventListener('click', () => {
+        if (!started) {
+            music.play().then(() => {
+                started = true;
+                console.log('Music started');
+            }).catch(err => {
+                console.error('Music play error:', err);
+            });
+        }
+    }, { once: true });
 });
