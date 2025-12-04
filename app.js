@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
 
       $("#employeeGradeText").textContent =
-        "Grade: " + (e ? e.grade : "—") + " (" + Math.round(pct * 100) + "%)";
+        "Grade: " + (e ? e.grade : "—") + " (" + Math.round(pct * 1000) + "%)";
 
       computeAndShow();
     }
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const km     = Number(kmInput.value || 0);
       const isHalf = isHalfPriceEnabled();
 
-      const baseRepair    = isHalf ? 400 : 800;
+      const baseRepair    = isHalf ? 5000 : 10000;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
@@ -440,10 +440,10 @@ document.addEventListener("DOMContentLoaded", () => {
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value    = isHalf ? 400 : 800;
+        amountInput.value    = isHalf ? 5000 : 10000;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value    = isHalf ? 100 : 200;
+        amountInput.value    = isHalf ? 2500 : 5000;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
@@ -500,11 +500,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let distanceTotal = 0;
 
       if (st === "rep") {
-        base = isHalf ? 400 : 800;
+        base = isHalf ? 5000 : 10000;
       } else if (st === "net") {
-        base = isHalf ? 100 : 200;
+        base = isHalf ? 2500 : 5000;
       } else if (st === "rep_dist") {
-        base          = isHalf ? 400 : 800;
+        base          = isHalf ? 10000 : 20000;
         distanceTotal = km * PRICE_PER_KM;
       } else if (st === "kit") { 
         base = kits * KIT_PRICE;
@@ -1021,3 +1021,4 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBtn.textContent = "▶";
   }
 });
+
