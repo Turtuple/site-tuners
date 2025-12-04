@@ -894,14 +894,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   })();
 
-  const DISCORD_WEBHOOK_RDV   = "https://discordapp.com/api/webhooks/1443003968736329829/LcfXJEhynf9TTw8lUgK46_aMx2u-RqxYKlSvYcaM_BKxQaot17ygua3r7mqQTersINm5";
-  const DISCORD_WEBHOOK_RECRUT = "https://discordapp.com/api/webhooks/1443006788545810575/GtfssDa_CsZTrLwzV14XDFbbKrkltninMve5ReBDZWIx2eMw3pTUboZNKGoyKfThQk4n";
-  const DISCORD_WEBHOOK_CONGE = "https://discordapp.com/api/webhooks/1443006980037017661/HvvAqcYe4CJ8GMUnVxmh_jtsFYLniL5qJLLRrQPBR8joGFmmbfNNccp2SA5Cs6VGhBAB";
-
-  const DISCORD_WEBHOOK_FICHE  =
-    "https://discordapp.com/api/webhooks/1443007202683130017/jF6fD4GJLktyd9XWL352uVmZKRs5WNnJr92ig542LKuBgmtt_1NaUIGACovySIfK1DMU";
-  const DISCORD_WEBHOOK_ENTREE =
-    "https://discordapp.com/api/webhooks/1443007088056995954/5cexKwaOG3jNTi-7DrRHS8APy9S17xYbktm1PwVViOV6PpDzc2BDCwIFOp6mUkNsvOsG";
+  const DISCORD_WEBHOOK_RDV = "https://discord.com/api/webhooks/1446227799026434189/aYgn03dW4ePEbmH1UPFuiyYNRDpSNswHcoshRhBpu_HcVaX9SLrCibfBQvt8_KvvJPPV";
+  const DISCORD_WEBHOOK_RECRUT = "https://discord.com/api/webhooks/1446228002311634988/BdbtB6rRd0o0e9cOfQhU0pvzyimZtZM0NcpagdNbFnSwaJUVTq7abyPklu_zCKBT_SNQ";
+  const DISCORD_WEBHOOK_CONGE = "https://discord.com/api/webhooks/1446228113691246714/tPl_7iVOypvaU2pZ1QjFVRTsvZu4KfRvMmuh_jSK9WlKpdSOm-C1uVkflvrR8-7NyMVU";
+  const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
+  const DISCORD_WEBHOOK_ENTREE = "https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 
   (function initSnow() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
