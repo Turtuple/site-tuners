@@ -457,11 +457,6 @@ textarea {
   color: #9d9faa;
 }
 
-.footer-quote {
-  color: #9B1C1C;
-  font-size: 0.9rem;
-}
-
 .calendar-list {
   list-style: none;
   padding: 0;
@@ -890,3 +885,4 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #e1e1e1;
 }
+
