@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       rdvMsg.textContent = "Envoi en cours…";
-      rdvMsg.style.color = "#b7a8ff";
+      rdvMsg.style.color = "#9B1C1C";
 
       const formData = new FormData(rdvForm);
 
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const details   = formData.get("details") || "—";
 
       const payload = {
-        username: "Bennys - Rendez-vous",
+        username: "Benny's - Rendez-vous",
         embeds: [
           {
             title: "Nouvelle demande de rendez-vous",
-            color: 0x4b39c7,
+            color: 0x9B1C1C,
             fields: [
               { name: "Nom RP", value: nom, inline: false },
               { name: "Numéro de téléphone", value: telephone, inline: false },
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       recMsg.textContent = "Envoi en cours…";
-      recMsg.style.color = "#b7a8ff";
+      recMsg.style.color = "#9B1C1C";
 
       const formData = new FormData(recForm);
 
@@ -108,11 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const pqtoi    = formData.get("pqtoi") || "—";
 
       const payload = {
-        username: "Bennys - Recrutement",
+        username: "Benny's - Recrutement",
         embeds: [
           {
-            title: "Nouvelle candidature Bennys",
-            color: 0x4b39c7,
+            title: "Nouvelle candidature Benny's",
+            color: 0x9B1C1C,
             fields: [
               { name: "Pseudo Discord", value: discord, inline: false },
               { name: "Âge HRP", value: String(age_hrp), inline: true },
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       congeMsg.textContent = "Envoi en cours…";
-      congeMsg.style.color = "#b7a8ff";
+      congeMsg.style.color = "#9B1C1C";
 
       const formData   = new FormData(congeForm);
       const nom_rp     = formData.get("nom_rp") || "—";
@@ -194,11 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const details    = formData.get("details") || "—";
 
       const payload = {
-        username: "Bennys - Demande de congé",
+        username: "Benny's Garage - Demande de congé",
         embeds: [
           {
             title: "Nouvelle demande de congé",
-            color: 0x4b39c7,
+            color: 0x9B1C1C,
             fields: [
               { name: "Nom & prénom RP", value: nom_rp, inline: false },
               { name: "Poste / rôle", value: role, inline: false },
@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
 
       $("#employeeGradeText").textContent =
-        "Grade: " + (e ? e.grade : "—") + " (" + Math.round(pct * 1000) + "%)";
+        "Grade: " + (e ? e.grade : "—") + " (" + Math.round(pct * 100) + "%)";
 
       computeAndShow();
     }
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const km     = Number(kmInput.value || 0);
       const isHalf = isHalfPriceEnabled();
 
-      const baseRepair    = isHalf ? 5000 : 10000;
+      const baseRepair    = isHalf ? 400 : 800;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
@@ -440,10 +440,10 @@ document.addEventListener("DOMContentLoaded", () => {
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value    = isHalf ? 5000 : 10000;
+        amountInput.value    = isHalf ? 400 : 800;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value    = isHalf ? 2500 : 5000;
+        amountInput.value    = isHalf ? 100 : 200;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
@@ -500,11 +500,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let distanceTotal = 0;
 
       if (st === "rep") {
-        base = isHalf ? 5000 : 10000;
+        base = isHalf ? 400 : 800;
       } else if (st === "net") {
-        base = isHalf ? 2500 : 5000;
+        base = isHalf ? 100 : 200;
       } else if (st === "rep_dist") {
-        base          = isHalf ? 10000 : 20000;
+        base          = isHalf ? 400 : 800;
         distanceTotal = km * PRICE_PER_KM;
       } else if (st === "kit") { 
         base = kits * KIT_PRICE;
@@ -898,127 +898,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_RECRUT = "https://discord.com/api/webhooks/1446228002311634988/BdbtB6rRd0o0e9cOfQhU0pvzyimZtZM0NcpagdNbFnSwaJUVTq7abyPklu_zCKBT_SNQ";
   const DISCORD_WEBHOOK_CONGE = "https://discord.com/api/webhooks/1446228113691246714/tPl_7iVOypvaU2pZ1QjFVRTsvZu4KfRvMmuh_jSK9WlKpdSOm-C1uVkflvrR8-7NyMVU";
   const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
-  const DISCORD_WEBHOOK_ENTREE = "https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
-
-  (function initSnow() {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (prefersReducedMotion.matches) return;
-
-    const canvas = document.createElement("canvas");
-    canvas.id = "snow-canvas";
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext("2d");
-
-    let width, height;
-    function resize() {
-      width  = canvas.width  = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener("resize", resize);
-    resize();
-
-    const FLAKE_COUNT = 120;
-    const flakes = [];
-
-    function createFlake() {
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: 1 + Math.random() * 3,
-        speedY: 0.5 + Math.random() * 1.5,
-        speedX: -0.5 + Math.random(),
-        opacity: 0.4 + Math.random() * 0.6
-      };
-    }
-
-    for (let i = 0; i < FLAKE_COUNT; i++) {
-      flakes.push(createFlake());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < flakes.length; i++) {
-        const f = flakes[i];
-
-        f.y += f.speedY;
-        f.x += f.speedX;
-
-        if (f.y > height + 5) {
-          f.y = -10;
-          f.x = Math.random() * width;
-        }
-        if (f.x > width + 5) {
-          f.x = -5;
-        } else if (f.x < -5) {
-          f.x = width + 5;
-        }
-
-        ctx.beginPath();
-        ctx.globalAlpha = f.opacity;
-        ctx.fillStyle = "#ffffff";
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  })();
-
-  const audioEl   = document.getElementById("bg-music");
-  const toggleBtn = document.getElementById("music-toggle");
-  const volumeEl  = document.getElementById("music-volume");
-
-  const STORAGE_KEY = "bennys_music_prefs_v1";
-
-  if (audioEl && toggleBtn && volumeEl) {
-
-    let prefs = { volume: 0.2, muted: false };
-    try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (saved) prefs = saved;
-    } catch {}
-
-    audioEl.volume = prefs.volume;
-    audioEl.muted  = prefs.muted;
-    volumeEl.value = Math.round(prefs.volume * 100);
-    if (prefs.muted) toggleBtn.classList.add("muted");
-
-    const savePrefs = () => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        volume: audioEl.volume,
-        muted: audioEl.muted
-      }));
-    };
-
-    toggleBtn.addEventListener("click", () => {
-      if (audioEl.paused) {
-        audioEl.play().catch(() => {});
-        audioEl.muted = false;
-        toggleBtn.textContent = "⏸";
-        toggleBtn.classList.remove("muted");
-      } else {
-        audioEl.pause();
-        toggleBtn.textContent = "▶";
-      }
-      savePrefs();
-    });
-
-    volumeEl.addEventListener("input", () => {
-      const v    = Math.max(0, Math.min(100, Number(volumeEl.value) || 0));
-      const norm = v / 100;
-      audioEl.volume = norm;
-      audioEl.muted  = norm === 0;
-      if (audioEl.muted) toggleBtn.classList.add("muted");
-      else toggleBtn.classList.remove("muted");
-      savePrefs();
-    });
-
-    toggleBtn.textContent = "▶";
-  }
+  const DISCORD_WEBHOOK_ENTREE ="https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 });
-
