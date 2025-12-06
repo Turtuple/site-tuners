@@ -3,16 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bennys - Mécano</title>
+  <title>Benny's - Mécano</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="shell nav-shell">
-    <div class="brand">
-      <span class="brand-logo" aria-hidden="true">🔧</span>
-      <span class="brand-name">Bennys</span>
-    </div>
+      <div class="brand">
+        <img
+          src="img/bennyslogo.png"
+          alt="Benny's"
+          class="brand-logo-img"
+        />
+        <span class="brand-name">Benny's</span>
+      </div>
 
       <button class="nav-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -36,7 +40,7 @@
       <div class="shell hero-grid">
         <div class="hero-left">
           <div class="hero-title">
-          <h1>Bennys - mécano</h1>
+          <h1>Benny's - Mécano</h1>
             <a href="https://discord.gg/dpKmFVkhFt" class="nav-discord" target="_blank" aria-label="Discord">
               <svg viewBox="0 0 245 240" class="discord-icon">
                 <path fill="currentColor" d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/>
@@ -69,7 +73,7 @@
             <li>- Présence active</li>
           </ul>
           <p class="hero-small">
-            Intéressé(e) ? Remplis le formulaire dans l'onglet « Recrutement ».
+            Intéressé(e) ? Remplis le formulaire dans l'onglet Recrutement
           </p>
           
         </div>
@@ -79,7 +83,7 @@
     <section id="services" class="section">
       <div class="shell">
         <div class="section-head">
-          <h2>Services offerts</h2>
+          <h2><span class="accent-color-item">●</span> Services offerts</h2>
           <p>
             Voici la liste des services que nous proposons au garage. Consultez l'onglet « Tarifs » pour une estimation des prix.
           </p>
@@ -121,7 +125,7 @@
       <div class="shell rdv-grid">
         <div>
           <div class="section-head">
-            <h2>Prendre rendez-vous</h2>
+            <h2><span class="accent-color-item">●</span> Prendre rendez-vous</h2>
             <p>
               Voici le formulaire pour prendre rendez-vous au garage. Nous vous recontacterons pour confirmer les détails.
             </p>
@@ -189,7 +193,7 @@
     <section id="tarifs" class="section">
       <div class="shell">
         <div class="section-head">
-          <h2>Tarifs indicatifs</h2>
+          <h2><span class="accent-color-item">●</span> Tarifs indicatifs</h2>
           <p>
             Voici une estimation des prix pour les services offerts au garage. Les tarifs peuvent varier selon le projet et les besoins spécifiques.
           </p>
@@ -198,7 +202,7 @@
         <div class="grid grid-3">
           <article class="card pricing">
             <h3>Réparation</h3>
-            <p class="price">10 000 $</p>
+            <p class="price">800$</p>
             <p class="pricing-text">
               Réparations moteur et carrosserie.
             </p>
@@ -206,7 +210,7 @@
 
           <article class="card pricing">
             <h3>Nettoyage</h3>
-            <p class="price">5 000 $</p>
+            <p class="price">200$</p>
             <p class="pricing-text">
               Lavage extérieur complet du véhicule
             </p>
@@ -214,7 +218,7 @@
 
           <article class="card pricing">
             <h3>Customisation</h3>
-            <p class="price">10 000 – 10 000 000 $</p>
+            <p class="price">100$ – 100 000$</p>
             <p class="pricing-text">
               Toute sorte de modifications est possible, le tarif dépendra du projet.
             </p>
@@ -222,7 +226,7 @@
 
           <article class="card pricing">
             <h3>Assistance routière</h3>
-            <p class="price">20 000 $ + 1 000 $/km</p>
+            <p class="price">800$ + 100$/km</p>
             <p class="pricing-text">
               Remorquage et réparation à distance. Le tarif peut varier selon la distance et la situation.
             </p>
@@ -234,9 +238,9 @@
     <section id="equipe" class="section">
       <div class="shell">
         <div class="section-head">
-          <h2>L'équipe Bennys</h2>
+          <h2><span class="accent-color-item">●</span> L'équipe du Benny's</h2>
           <p>
-            Voici les membres de notre équipe au garage Bennys. Chacun apporte son expertise et sa passion pour offrir le meilleur service possible à nos clients.
+            Voici les membres de notre équipe du Benny's. Chacun apporte son expertise et sa passion pour offrir le meilleur service possible à nos clients.
           </p>
         </div>
 
@@ -291,27 +295,6 @@
     </div>
   </footer>
 
-  <audio id="bg-music" src="music/christmas.mp3" loop style="display:none"></audio>
-
-  <div class="music-controls" id="music-controls">
-    <button class="music-mute-btn" id="music-toggle" aria-label="Activer la musique">
-      ▶
-    </button>
-    <input
-      type="range"
-      class="music-vol"
-      id="music-volume"
-      min="0"
-      max="100"
-      step="1"
-      value="20"
-      aria-label="Volume de la musique"
-    />
-  </div>
-
   <script src="app.js"></script>
 </body>
 </html>
-
-
-
