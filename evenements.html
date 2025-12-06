@@ -3,16 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Événements - Bennys</title>
+  <title>Événements - Benny's</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="shell nav-shell">
-    <div class="brand">
-      <span class="brand-logo" aria-hidden="true">🔧</span>
-      <span class="brand-name">Bennys</span>
-    </div>
+      <div class="brand">
+        <img
+          src="img/bennyslogo.png"
+          alt="Benny's"
+          class="brand-logo-img"
+        />
+        <span class="brand-name">Benny's</span>
+      </div>
 
       <button class="nav-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -34,9 +38,9 @@
   <main>
     <section class="section">
       <div class="shell">
-        <h1>Événements Bennys</h1>
+        <h1>Événements Benny's</h1>
         <p class="page-sub">
-          Cette page servira à présenter les événements organisés par le Bennys
+          Cette page servira à présenter les événements organisés par le Benny's
         </p>
 
         <article class="card">
@@ -64,24 +68,6 @@
       </p>
     </div>
   </footer>
-
-  <audio id="bg-music" src="music/christmas.mp3" loop style="display:none"></audio>
-
-  <div class="music-controls" id="music-controls">
-    <button class="music-mute-btn" id="music-toggle" aria-label="Activer la musique">
-      ▶
-    </button>
-    <input
-      type="range"
-      class="music-vol"
-      id="music-volume"
-      min="0"
-      max="100"
-      step="1"
-      value="20"
-      aria-label="Volume de la musique"
-    />
-  </div>
 
   <script src="app.js"></script>
 </body>
