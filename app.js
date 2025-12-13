@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const km     = Number(kmInput.value || 0);
       const isHalf = isHalfPriceEnabled();
 
-      const baseRepair    = isHalf ? 400 : 800;
+      const baseRepair    = isHalf ? 5000 : 10000;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
@@ -440,10 +440,10 @@ document.addEventListener("DOMContentLoaded", () => {
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value    = isHalf ? 400 : 800;
+        amountInput.value    = isHalf ? 5000 : 10000;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value    = isHalf ? 100 : 200;
+        amountInput.value    = isHalf ? 2500 : 5000;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
@@ -500,11 +500,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let distanceTotal = 0;
 
       if (st === "rep") {
-        base = isHalf ? 400 : 800;
+        base = isHalf ? 5000 : 10000;
       } else if (st === "net") {
         base = isHalf ? 100 : 200;
       } else if (st === "rep_dist") {
-        base          = isHalf ? 400 : 800;
+        base          = isHalf ? 5000 : 10000;
         distanceTotal = km * PRICE_PER_KM;
       } else if (st === "kit") { 
         base = kits * KIT_PRICE;
@@ -900,3 +900,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
   const DISCORD_WEBHOOK_ENTREE ="https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 });
+
