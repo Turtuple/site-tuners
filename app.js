@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
 
@@ -30,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const rdvForm = document.getElementById("form-rdv");
-  const rdvMsg  = document.getElementById("rdv-message");
+  const rdvMsg = document.getElementById("rdv-message");
   if (rdvForm && rdvMsg) {
     rdvForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -40,12 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formData = new FormData(rdvForm);
 
-      const nom       = formData.get("nom") || "—";
+      const nom = formData.get("nom") || "—";
       const telephone = formData.get("telephone") || "—";
-      const service   = formData.get("service") || "—";
-      const date      = formData.get("date") || "—";
-      const heure     = formData.get("heure") || "—";
-      const details   = formData.get("details") || "—";
+      const service = formData.get("service") || "—";
+      const date = formData.get("date") || "—";
+      const heure = formData.get("heure") || "—";
+      const details = formData.get("details") || "—";
 
       const payload = {
         username: "Benny's - Rendez-vous",
@@ -86,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const recForm = document.getElementById("form-recrut");
-  const recMsg  = document.getElementById("recrut-message");
+  const recMsg = document.getElementById("recrut-message");
 
   if (recForm && recMsg) {
     recForm.addEventListener("submit", async (e) => {
@@ -97,15 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formData = new FormData(recForm);
 
-      const discord  = formData.get("discord") || "—";
-      const age_hrp  = formData.get("age_hrp") || "—";
-      const dispo    = formData.get("dispo") || "—";
-      const nom_rp   = formData.get("nom_rp") || "—";
-      const age_rp   = formData.get("age_rp") || "—";
+      const discord = formData.get("discord") || "—";
+      const age_hrp = formData.get("age_hrp") || "—";
+      const dispo = formData.get("dispo") || "—";
+      const nom_rp = formData.get("nom_rp") || "—";
+      const age_rp = formData.get("age_rp") || "—";
       const qualites = formData.get("qualites") || "—";
-      const defauts  = formData.get("defauts") || "—";
-      const motifs   = formData.get("motifs") || "—";
-      const pqtoi    = formData.get("pqtoi") || "—";
+      const defauts = formData.get("defauts") || "—";
+      const motifs = formData.get("motifs") || "—";
+      const pqtoi = formData.get("pqtoi") || "—";
 
       const payload = {
         username: "Benny's - Recrutement",
@@ -146,10 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const EMPLOYEE_CODE = "BENNYS2025";
 
-  const codeInput    = document.getElementById("employee-code");
-  const loginBtn     = document.getElementById("employee-login-btn");
-  const loginMsg     = document.getElementById("employee-login-msg");
-  const loginCard    = document.getElementById("login-card");
+  const codeInput = document.getElementById("employee-code");
+  const loginBtn = document.getElementById("employee-login-btn");
+  const loginMsg = document.getElementById("employee-login-msg");
+  const loginCard = document.getElementById("login-card");
   const employeeZone = document.getElementById("employee-zone");
 
   if (codeInput && loginBtn && loginMsg && loginCard && employeeZone) {
@@ -176,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const congeForm = document.getElementById("form-conge");
-  const congeMsg  = document.getElementById("conge-message");
+  const congeMsg = document.getElementById("conge-message");
 
   if (congeForm && congeMsg) {
     congeForm.addEventListener("submit", async (e) => {
@@ -185,13 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
       congeMsg.textContent = "Envoi en cours…";
       congeMsg.style.color = "#9B1C1C";
 
-      const formData   = new FormData(congeForm);
-      const nom_rp     = formData.get("nom_rp") || "—";
-      const role       = formData.get("role") || "—";
-      const dateDebut  = formData.get("date_debut") || "—";
-      const dateFin    = formData.get("date_fin") || "—";
-      const motif      = formData.get("motif") || "—";
-      const details    = formData.get("details") || "—";
+      const formData = new FormData(congeForm);
+      const nom_rp = formData.get("nom_rp") || "—";
+      const role = formData.get("role") || "—";
+      const dateDebut = formData.get("date_debut") || "—";
+      const dateFin = formData.get("date_fin") || "—";
+      const motif = formData.get("motif") || "—";
+      const details = formData.get("details") || "—";
 
       const payload = {
         username: "Benny's Garage - Demande de congé",
@@ -233,22 +232,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   (function initFicheBennys() {
     const GRADE_PCT = {
-      "Apprenti":      0.15,
-      "Expert":        0.25,
+      "Apprenti": 0.15,
+      "Expert": 0.25,
       "Chef d’équipe": 0.30,
-      "Responsable":   0.40,
-      "Propriétaire":  0.40
+      "Responsable": 0.40,
+      "Propriétaire": 0.40
     };
 
     const EMP = [
-      { id: "arthur", nom: "Arthur Blackwood",  grade: "Propriétaire" },
-      { id: "rico",   nom: "Rico Blackwood",    grade: "Responsable" },
-      { id: "olsh",   nom: "Jack Blackwood",    grade: "Chef d’équipe" },
-      { id: "tot",    nom: "Serge Blackwood",   grade: "Chef d’équipe" },
-      { id: "mich",   nom: "Michel Blackwood",  grade: "Apprenti" }
+      { id: "arthur", nom: "Arthur Blackwood", grade: "Propriétaire" },
+      { id: "rico", nom: "Rico Blackwood", grade: "Responsable" },
+      { id: "olsh", nom: "Jack Blackwood", grade: "Chef d’équipe" },
+      { id: "tot", nom: "Serge Blackwood", grade: "Chef d’équipe" },
+      { id: "mich", nom: "Michel Blackwood", grade: "Apprenti" }
     ];
 
-    const LS_KEY     = "fiche_paie_entries_v6";
+    const LS_KEY = "fiche_paie_entries_v6";
     const LS_EMP_KEY = "fiche_paie_selected_employee_v1";
 
     const ENABLE_DISCORD_LOG_ON_ADD = true;
@@ -311,22 +310,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    let entries     = load();
+    let entries = load();
     let currentPage = 1;
-    let pageSize    = 20;
+    let pageSize = 20;
 
     const PRICE_PER_KM = 100;
-    const KIT_PRICE    = 500; 
 
     function formatServiceLabel(r) {
-      if (r.type === "rep")      return "Réparation";
-      if (r.type === "cus")      return "Customisation";
+      if (r.type === "rep") return "Réparation";
+      if (r.type === "cus") return "Customisation";
       if (r.type === "rep_dist") {
         return "Réparation à distance";
       }
-      if (r.type === "net")      return "Nettoyage";
-      if (r.type === "kit")      return "Vente kit de réparation"; 
-      if (r.type === "other")    return "Autre";
+      if (r.type === "net") return "Nettoyage";
+      if (r.type === "other") return "Autre";
       return r.type || "—";
     }
 
@@ -353,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateGradeHint() {
       const sel = $("#employeeSelect").value;
-      const e   = EMP.find((x) => x.id === sel);
+      const e = EMP.find((x) => x.id === sel);
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
 
       $("#employeeGradeText").textContent =
@@ -368,8 +365,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateDistanceAndAmount() {
-      const st          = $("#serviceType").value;
-      const kmInput     = $("#distanceKm");
+      const st = $("#serviceType").value;
+      const kmInput = $("#distanceKm");
       const amountInput = $("#serviceAmount");
 
       if (!kmInput || !amountInput || st !== "rep_dist") {
@@ -377,10 +374,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const km     = Number(kmInput.value || 0);
+      const km = Number(kmInput.value || 0);
       const isHalf = isHalfPriceEnabled();
 
-      const baseRepair    = isHalf ? 5000 : 10000;
+      const baseRepair = isHalf ? 5000 : 10000;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
@@ -388,31 +385,11 @@ document.addEventListener("DOMContentLoaded", () => {
       computeAndShow();
     }
 
-    function updateKitAmount() {
-      const st          = $("#serviceType").value;
-      const kitsInput   = $("#kitsCount");
-      const amountInput = $("#serviceAmount");
-
-      if (!kitsInput || !amountInput || st !== "kit") {
-        computeAndShow();
-        return;
-      }
-
-      const qty = Number(kitsInput.value || 0);
-      const total = qty * KIT_PRICE;
-
-      amountInput.value = total;
-
-      computeAndShow();
-    }
-
     function updateServiceFields() {
-      const st          = $("#serviceType").value;
-      const row         = $("#distanceRow");
-      const kitsRow     = $("#kitsRow");    
+      const st = $("#serviceType").value;
+      const row = $("#distanceRow");
       const amountInput = $("#serviceAmount");
-      const kmInput     = $("#distanceKm");
-      const kitsInput   = $("#kitsCount");    
+      const kmInput = $("#distanceKm");
 
       if (!amountInput) return;
 
@@ -440,17 +417,13 @@ document.addEventListener("DOMContentLoaded", () => {
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value    = isHalf ? 5000 : 10000;
+        amountInput.value = isHalf ? 5000 : 10000;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value    = isHalf ? 2500 : 5000;
+        amountInput.value = isHalf ? 2500 : 5000;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
-      } else if (st === "kit") { 
-        amountInput.readOnly = true;
-        const qty = kitsInput ? Number(kitsInput.value || 0) : 0;
-        amountInput.value = qty * KIT_PRICE;
       } else if (st === "cus") {
         amountInput.value = 0;
       } else if (st === "other") {
@@ -466,37 +439,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (kitsRow) {
-        if (st === "kit") {
-          kitsRow.style.display = "";
-        } else {
-          kitsRow.style.display = "none";
-          if (kitsInput) kitsInput.value = 0;
-        }
-      }
-
       if (st === "rep_dist") {
         updateDistanceAndAmount();
-      } else if (st === "kit") {
-        updateKitAmount();
       } else {
         computeAndShow();
       }
     }
 
     function currentCalc() {
-      const e   = EMP.find((x) => x.id === $("#employeeSelect").value);
+      const e = EMP.find((x) => x.id === $("#employeeSelect").value);
       const pct = e ? GRADE_PCT[e.grade] || 0 : 0;
-      const st  = $("#serviceType").value;
+      const st = $("#serviceType").value;
 
-      const kmInput   = $("#distanceKm");
-      const km        = kmInput ? Number(kmInput.value || 0) : 0;
-      const kitsInput = $("#kitsCount");                     
-      const kits      = kitsInput ? Number(kitsInput.value || 0) : 0; 
+      const kmInput = $("#distanceKm");
+      const km = kmInput ? Number(kmInput.value || 0) : 0;
 
       const isHalf = isHalfPriceEnabled();
 
-      let base          = 0;
+      let base = 0;
       let distanceTotal = 0;
 
       if (st === "rep") {
@@ -504,22 +464,19 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (st === "net") {
         base = isHalf ? 100 : 200;
       } else if (st === "rep_dist") {
-        base          = isHalf ? 5000 : 10000;
+        base = isHalf ? 5000 : 10000;
         distanceTotal = km * PRICE_PER_KM;
-      } else if (st === "kit") { 
-        base = kits * KIT_PRICE;
       } else {
         base = Number($("#serviceAmount").value || 0);
       }
 
       const totalBeforePct = base + distanceTotal;
-      const total          = Math.round(totalBeforePct * pct);
+      const total = Math.round(totalBeforePct * pct);
 
       return {
         pct,
         base,
         km,
-        kits,             
         distance: distanceTotal,
         gross: totalBeforePct,
         total,
@@ -545,12 +502,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateWeekPanel(wk, list) {
       const r = weekRange($("#dateInput").value || isoToday());
-      $("#weekKeyText").textContent   = wk;
+      $("#weekKeyText").textContent = wk;
       $("#weekRangeText").textContent = r.start + " → " + r.end;
 
       let total = 0;
-      let rep   = 0;
-      let cus   = 0;
+      let rep = 0;
+      let cus = 0;
 
       for (let i = 0; i < list.length; i++) {
         total += Number(list[i].total) || 0;
@@ -558,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (list[i].type === "cus") cus++;
       }
 
-      $("#weekTotalAmount").textContent  = money(total);
+      $("#weekTotalAmount").textContent = money(total);
       $("#weekActionsCount").textContent = String(list.length);
       $("#weekRepairsCount").textContent = String(rep);
       $("#weekCustomsCount").textContent = String(cus);
@@ -568,7 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function render() {
-      const wk  = weekKey($("#dateInput").value || isoToday());
+      const wk = weekKey($("#dateInput").value || isoToday());
       const all = getFiltered(wk);
 
       updateWeekPanel(wk, all);
@@ -577,10 +534,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const totalPages = Math.max(1, Math.ceil(all.length / pageSize));
       if (currentPage > totalPages) currentPage = totalPages;
-      if (currentPage < 1)          currentPage = 1;
+      if (currentPage < 1) currentPage = 1;
 
       const start = (currentPage - 1) * pageSize;
-      const end   = start + pageSize;
+      const end = start + pageSize;
 
       let html = "";
       if (all.length === 0) {
@@ -600,9 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
               : Number(r.base || 0);
 
-          const halfTag = r.half
-            ? ' <span class="half-pill">[50%]</span>'
-            : "";
+          const halfTag = r.half ? ' <span class="half-pill">[50%]</span>' : "";
 
           html +=
             "<tr>" +
@@ -632,43 +587,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function buildDiscordText(list, wk, name) {
       let totalBase = 0;
-      let totalPay  = 0;
-      let rep       = 0;
-      let cus       = 0;
-      let net       = 0;
-      let kit       = 0; 
+      let totalPay = 0;
+      let rep = 0;
+      let cus = 0;
+      let net = 0;
 
       for (let i = 0; i < list.length; i++) {
-        const r        = list[i];
+        const r = list[i];
         const distance = Number(r.distance) || 0;
-        const base     = Number(r.base) || 0;
-        const gross    =
-          typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
+        const base = Number(r.base) || 0;
+        const gross = typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
 
         totalBase += gross;
-        totalPay  += Number(r.total) || 0;
+        totalPay += Number(r.total) || 0;
 
         if (r.type === "rep" || r.type === "rep_dist") rep++;
         if (r.type === "cus") cus++;
         if (r.type === "net") net++;
-        if (r.type === "kit") kit++;
       }
 
       const lines = list
         .map((r) => {
           const distance = Number(r.distance) || 0;
-          const base     = Number(r.base) || 0;
-          const gross    =
-            typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
-          const halfTag  = r.half ? " [50%]" : "";
+          const base = Number(r.base) || 0;
+          const gross = typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
+          const halfTag = r.half ? " [50%]" : "";
 
           let extra = "";
           if (r.type === "rep_dist") {
-            extra =
-              ` | Prix distance: ${money(distance)} | Distance: ${r.km} km`;
-          } else if (r.type === "kit") {
-            const qty = typeof r.kits !== "undefined" ? r.kits : 0;
-            extra = ` | Quantité: ${qty}`;
+            extra = ` | Prix distance: ${money(distance)} | Distance: ${r.km} km`;
           }
 
           return (
@@ -682,7 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return (
         `**FICHE DE PAIE (${name}) — Semaine ${wk}**\n` +
-        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus} | Nettoyages: ${net} | Kits: ${kit}\n` +
+        `Montant à payer: ${money(totalPay)} | Chiffre d'affaire: ${money(totalBase)} | Réparations: ${rep} | Customisations: ${cus} | Nettoyages: ${net}\n` +
         "```" + "\n" +
         (lines || "Aucune entrée") +
         "\n```"
@@ -691,7 +638,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function sendDiscord(text, target) {
       let url = null;
-      if (target === "fiche")  url = DISCORD_WEBHOOK_FICHE;
+      if (target === "fiche") url = DISCORD_WEBHOOK_FICHE;
       if (target === "entree") url = DISCORD_WEBHOOK_ENTREE;
 
       if (!url) {
@@ -707,12 +654,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function exportCurrentWeekToDiscord() {
-      const wk   = weekKey($("#dateInput").value || isoToday());
+      const wk = weekKey($("#dateInput").value || isoToday());
       const list = getFiltered(wk);
       const selId = $("#employeeSelect").value;
-      const emp   = EMP.find((e) => e.id === selId);
-      const name  = emp ? emp.nom : "Tous les employés";
-      const text  = buildDiscordText(list, wk, name);
+      const emp = EMP.find((e) => e.id === selId);
+      const name = emp ? emp.nom : "Tous les employés";
+      const text = buildDiscordText(list, wk, name);
 
       sendDiscord(text, "fiche")
         .then(() => alert("Export envoyé sur Discord."))
@@ -734,7 +681,6 @@ document.addEventListener("DOMContentLoaded", () => {
         grade: c.emp.grade,
         type: c.type,
         km: c.km,
-        kits: c.kits,         
         base: c.base,
         distance: c.distance,
         gross: c.gross,
@@ -753,20 +699,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const halfTag = rec.half ? " [50%]" : "";
 
         const distance = Number(rec.distance) || 0;
-        const base     = Number(rec.base) || 0;
-        const gross    =
-          typeof rec.gross !== "undefined" ? Number(rec.gross) : base + distance;
+        const base = Number(rec.base) || 0;
+        const gross = typeof rec.gross !== "undefined" ? Number(rec.gross) : base + distance;
 
         let extra = "";
         if (rec.type === "rep_dist") {
-          extra =
-            " | Prix distance: " + money(distance) + " | Distance: " + rec.km + " km";
-        } else if (rec.type === "kit") { 
-          const qty = typeof rec.kits !== "undefined" ? rec.kits : 0;
-          extra = " | Quantité: " + qty;
+          extra = " | Prix distance: " + money(distance) + " | Distance: " + rec.km + " km";
         }
 
-        const t  =
+        const t =
           "**NOUVELLE ENTRÉE (" + rec.empNom + ") — Semaine " + wk + "**\n" +
           "```\n" +
           rec.date + " | " + rec.empNom + " | " + rec.grade + " | " +
@@ -807,23 +748,22 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Semaine vidée.");
     }
 
-    const employeeSelectEl     = $("#employeeSelect");
-    const dateInputEl          = $("#dateInput");
-    const serviceTypeEl        = $("#serviceType");
-    const serviceAmountEl      = $("#serviceAmount");
-    const distanceKmEl         = $("#distanceKm");
-    const kitsCountEl          = document.getElementById("kitsCount"); 
-    const searchInputEl        = $("#searchInput");
-    const addToWeekBtn         = $("#addToWeekButton");
-    const clearWeekBtn         = $("#clearWeekButton");
-    const prevPageBtn          = $("#prevPageBtn");
-    const nextPageBtn          = $("#nextPageBtn");
-    const pageSizeSelectEl     = $("#pageSizeSelect");
-    const exportDiscordBtn     = $("#exportDiscordButton");
-    const halfPriceCheckboxEl  = $("#halfPriceCheckbox");
-    const discountColEl        = document.getElementById("discountCol");
-    const discountToggleEl     = document.querySelector("#fiche-root .discount-toggle");
-    const discountRowInlineEl  = document.getElementById("discountRowInline");
+    const employeeSelectEl = $("#employeeSelect");
+    const dateInputEl = $("#dateInput");
+    const serviceTypeEl = $("#serviceType");
+    const serviceAmountEl = $("#serviceAmount");
+    const distanceKmEl = $("#distanceKm");
+    const searchInputEl = $("#searchInput");
+    const addToWeekBtn = $("#addToWeekButton");
+    const clearWeekBtn = $("#clearWeekButton");
+    const prevPageBtn = $("#prevPageBtn");
+    const nextPageBtn = $("#nextPageBtn");
+    const pageSizeSelectEl = $("#pageSizeSelect");
+    const exportDiscordBtn = $("#exportDiscordButton");
+    const halfPriceCheckboxEl = $("#halfPriceCheckbox");
+    const discountColEl = document.getElementById("discountCol");
+    const discountToggleEl = document.querySelector("#fiche-root .discount-toggle");
+    const discountRowInlineEl = document.getElementById("discountRowInline");
 
     if (!employeeSelectEl) return;
 
@@ -842,10 +782,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (distanceKmEl) {
       distanceKmEl.addEventListener("input", updateDistanceAndAmount);
-    }
-
-    if (kitsCountEl) { 
-      kitsCountEl.addEventListener("input", updateKitAmount);
     }
 
     if (halfPriceCheckboxEl) {
@@ -898,6 +834,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_RECRUT = "https://discord.com/api/webhooks/1446228002311634988/BdbtB6rRd0o0e9cOfQhU0pvzyimZtZM0NcpagdNbFnSwaJUVTq7abyPklu_zCKBT_SNQ";
   const DISCORD_WEBHOOK_CONGE = "https://discord.com/api/webhooks/1446228113691246714/tPl_7iVOypvaU2pZ1QjFVRTsvZu4KfRvMmuh_jSK9WlKpdSOm-C1uVkflvrR8-7NyMVU";
   const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
-  const DISCORD_WEBHOOK_ENTREE ="https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
+  const DISCORD_WEBHOOK_ENTREE = "https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 });
-
