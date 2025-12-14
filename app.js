@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const showDiscount = st === "rep" || st === "net" || st === "rep_dist";
 
       if (discountColEl && halfPriceCheckboxEl && discountToggleEl) {
-        discountColEl.style.display = showDiscount ? "" : "none";
+        discountColEl.style.display = showDiscount ? "" : "";
 
         if (!showDiscount) {
           halfPriceCheckboxEl.checked = false;
@@ -470,15 +470,20 @@ document.addEventListener("DOMContentLoaded", () => {
         base = Number($("#serviceAmount").value || 0);
       }
 
-      const totalBeforePct = base + distanceTotal;
-      const total = Math.round(totalBeforePct * pct);
+      let gross = base + distanceTotal;
+
+      if (st === "cus") {
+        gross = base * 0.55;
+      }
+
+      const total = Math.round(gross * pct);
 
       return {
         pct,
         base,
         km,
         distance: distanceTotal,
-        gross: totalBeforePct,
+        gross,
         total,
         type: st,
         emp: e,
@@ -550,12 +555,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const baseForDisplay =
             r.type === "rep_dist"
-              ? (
-                  typeof r.gross !== "undefined"
-                    ? Number(r.gross)
-                    : (Number(r.base || 0) + Number(r.distance || 0))
-                )
-              : Number(r.base || 0);
+              ? (typeof r.gross !== "undefined"
+                  ? Number(r.gross)
+                  : (Number(r.base || 0) + Number(r.distance || 0)))
+              : (r.type === "cus"
+                  ? (typeof r.gross !== "undefined"
+                      ? Number(r.gross)
+                      : Number(r.base || 0) * 0.55)
+                  : Number(r.base || 0));
 
           const halfTag = r.half ? ' <span class="half-pill">[50%]</span>' : "";
 
