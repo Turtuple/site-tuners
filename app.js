@@ -314,14 +314,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     let pageSize = 20;
 
-    const PRICE_PER_KM = 100;
+    const PRICE_PER_KM = 1000;
 
     function formatServiceLabel(r) {
       if (r.type === "rep") return "Réparation";
       if (r.type === "cus") return "Customisation";
-      if (r.type === "rep_dist") {
-        return "Réparation à distance";
-      }
+      if (r.type === "rep_dist") return "Réparation à distance";
       if (r.type === "net") return "Nettoyage";
       if (r.type === "other") return "Autre";
       return r.type || "—";
@@ -359,11 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
       computeAndShow();
     }
 
-    function isHalfPriceEnabled() {
-      const el = $("#halfPriceCheckbox");
-      return !!(el && el.checked);
-    }
-
     function updateDistanceAndAmount() {
       const st = $("#serviceType").value;
       const kmInput = $("#distanceKm");
@@ -375,13 +368,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const km = Number(kmInput.value || 0);
-      const isHalf = isHalfPriceEnabled();
-
-      const baseRepair = isHalf ? 5000 : 10000;
+      const baseRepair = 10000;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
-
       computeAndShow();
     }
 
@@ -393,34 +383,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!amountInput) return;
 
-      const showDiscount = st === "rep" || st === "net" || st === "rep_dist";
-
-      if (discountColEl && halfPriceCheckboxEl && discountToggleEl) {
-        discountColEl.style.display = showDiscount ? "" : "";
-
-        if (!showDiscount) {
-          halfPriceCheckboxEl.checked = false;
-          discountToggleEl.classList.remove("active");
-        }
-      }
-
-      if (discountRowInlineEl) {
-        if (showDiscount) {
-          discountRowInlineEl.classList.remove("no-discount");
-        } else {
-          discountRowInlineEl.classList.add("no-discount");
-        }
-      }
-
-      const isHalf = isHalfPriceEnabled();
-
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value = isHalf ? 5000 : 10000;
+        amountInput.value = 10000;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value = isHalf ? 2500 : 5000;
+        amountInput.value = 5000;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
@@ -454,17 +423,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const kmInput = $("#distanceKm");
       const km = kmInput ? Number(kmInput.value || 0) : 0;
 
-      const isHalf = isHalfPriceEnabled();
-
       let base = 0;
       let distanceTotal = 0;
 
       if (st === "rep") {
-        base = isHalf ? 5000 : 10000;
+        base = 10000;
       } else if (st === "net") {
-        base = isHalf ? 100 : 200;
+        base = 5000;
       } else if (st === "rep_dist") {
-        base = isHalf ? 5000 : 10000;
+        base = 10000;
         distanceTotal = km * PRICE_PER_KM;
       } else {
         base = Number($("#serviceAmount").value || 0);
@@ -486,8 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gross,
         total,
         type: st,
-        emp: e,
-        half: isHalf
+        emp: e
       };
     }
 
@@ -564,15 +530,13 @@ document.addEventListener("DOMContentLoaded", () => {
                       : Number(r.base || 0) * 0.55)
                   : Number(r.base || 0));
 
-          const halfTag = r.half ? ' <span class="half-pill">[50%]</span>' : "";
-
           html +=
             "<tr>" +
             "<td>" + r.date + "</td>" +
             "<td>" + r.empNom + "</td>" +
             '<td><span class="pill">' + r.grade + "</span></td>" +
             "<td>" + formatServiceLabel(r) + "</td>" +
-            "<td>" + money(baseForDisplay) + halfTag + "</td>" +
+            "<td>" + money(baseForDisplay) + "</td>" +
             "<td>" + Math.round(r.pct * 100) + "%</td>" +
             "<td><strong>" + money(r.total) + "</strong></td>" +
             '<td><button class="btn btn-ghost btn-del" data-id="' + r.id + '">Supprimer</button></td>' +
@@ -618,7 +582,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const distance = Number(r.distance) || 0;
           const base = Number(r.base) || 0;
           const gross = typeof r.gross !== "undefined" ? Number(r.gross) : base + distance;
-          const halfTag = r.half ? " [50%]" : "";
 
           let extra = "";
           if (r.type === "rep_dist") {
@@ -627,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           return (
             `${r.date} | ${r.empNom} | ${r.grade} | ${formatServiceLabel(r)}` +
-            ` | Valeur: ${money(gross)}${halfTag}` +
+            ` | Valeur: ${money(gross)}` +
             extra +
             ` | Revenu: ${money(r.total)}`
           );
@@ -692,8 +655,7 @@ document.addEventListener("DOMContentLoaded", () => {
         distance: c.distance,
         gross: c.gross,
         pct: c.pct,
-        total: c.total,
-        half: c.half
+        total: c.total
       };
 
       entries.push(rec);
@@ -703,7 +665,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (ENABLE_DISCORD_LOG_ON_ADD) {
         const wk = weekKey(rec.date);
-        const halfTag = rec.half ? " [50%]" : "";
 
         const distance = Number(rec.distance) || 0;
         const base = Number(rec.base) || 0;
@@ -719,7 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "```\n" +
           rec.date + " | " + rec.empNom + " | " + rec.grade + " | " +
           formatServiceLabel(rec) +
-          " | Valeur: " + money(gross) + halfTag +
+          " | Valeur: " + money(gross) +
           extra +
           " | Revenu: " + money(rec.total) +
           "\n```";
@@ -767,10 +728,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextPageBtn = $("#nextPageBtn");
     const pageSizeSelectEl = $("#pageSizeSelect");
     const exportDiscordBtn = $("#exportDiscordButton");
-    const halfPriceCheckboxEl = $("#halfPriceCheckbox");
-    const discountColEl = document.getElementById("discountCol");
-    const discountToggleEl = document.querySelector("#fiche-root .discount-toggle");
-    const discountRowInlineEl = document.getElementById("discountRowInline");
 
     if (!employeeSelectEl) return;
 
@@ -789,24 +746,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (distanceKmEl) {
       distanceKmEl.addEventListener("input", updateDistanceAndAmount);
-    }
-
-    if (halfPriceCheckboxEl) {
-      const syncDiscountToggleVisual = () => {
-        if (!discountToggleEl) return;
-        if (halfPriceCheckboxEl.checked) {
-          discountToggleEl.classList.add("active");
-        } else {
-          discountToggleEl.classList.remove("active");
-        }
-      };
-
-      halfPriceCheckboxEl.addEventListener("change", () => {
-        syncDiscountToggleVisual();
-        updateServiceFields();
-      });
-
-      syncDiscountToggleVisual();
     }
 
     searchInputEl.addEventListener("input", () => {
