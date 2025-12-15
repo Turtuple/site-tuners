@@ -245,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { id: "olsh", nom: "Jack Blackwood", grade: "Chef d’équipe" },
       { id: "tot", nom: "Serge Blackwood", grade: "Chef d’équipe" },
       { id: "mich", nom: "Michel Blackwood", grade: "Apprenti" },
-      { id: "jay", nom: "Jay Carter", grade: "Apprenti" }
     ];
 
     const LS_KEY = "fiche_paie_entries_v6";
@@ -315,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     let pageSize = 20;
 
-    const PRICE_PER_KM = 1000;
+    const PRICE_PER_KM = 100;
 
     function formatServiceLabel(r) {
       if (r.type === "rep") return "Réparation";
@@ -369,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const km = Number(kmInput.value || 0);
-      const baseRepair = 10000;
+      const baseRepair = 500;
       const distanceTotal = km * PRICE_PER_KM;
 
       amountInput.value = baseRepair + distanceTotal;
@@ -387,10 +386,10 @@ document.addEventListener("DOMContentLoaded", () => {
       amountInput.readOnly = false;
 
       if (st === "rep") {
-        amountInput.value = 10000;
+        amountInput.value = 500;
         amountInput.readOnly = true;
       } else if (st === "net") {
-        amountInput.value = 5000;
+        amountInput.value = 250;
         amountInput.readOnly = true;
       } else if (st === "rep_dist") {
         amountInput.readOnly = true;
@@ -428,21 +427,17 @@ document.addEventListener("DOMContentLoaded", () => {
       let distanceTotal = 0;
 
       if (st === "rep") {
-        base = 10000;
+        base = 500;
       } else if (st === "net") {
-        base = 5000;
+        base = 250;
       } else if (st === "rep_dist") {
-        base = 10000;
+        base = 500;
         distanceTotal = km * PRICE_PER_KM;
       } else {
         base = Number($("#serviceAmount").value || 0);
       }
 
       let gross = base + distanceTotal;
-
-      if (st === "cus") {
-        gross = base * 0.55;
-      }
 
       const total = Math.round(gross * pct);
 
@@ -521,15 +516,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const r = all[i];
 
           const baseForDisplay =
-            r.type === "rep_dist"
-              ? (typeof r.gross !== "undefined"
-                  ? Number(r.gross)
-                  : (Number(r.base || 0) + Number(r.distance || 0)))
-              : (r.type === "cus"
-                  ? (typeof r.gross !== "undefined"
-                      ? Number(r.gross)
-                      : Number(r.base || 0) * 0.55)
-                  : Number(r.base || 0));
+            typeof r.gross !== "undefined"
+              ? Number(r.gross)
+              : (Number(r.base || 0) + Number(r.distance || 0));
 
           html +=
             "<tr>" +
@@ -783,6 +772,3 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
   const DISCORD_WEBHOOK_ENTREE = "https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 });
-
-
-
