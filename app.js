@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { id: "olsh", nom: "Jack Blackwood", grade: "Chef d’équipe" },
       { id: "tot", nom: "Serge Blackwood", grade: "Chef d’équipe" },
       { id: "mich", nom: "Michel Blackwood", grade: "Apprenti" },
-      { id: "jay", nom: "Jay Carter", grade: "Apprenti" },
+      { id: "jay", nom: "Jay Carter", grade: "Apprenti" }
     ];
 
     const LS_KEY = "fiche_paie_entries_v6";
@@ -783,4 +783,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_WEBHOOK_FICHE = "https://discord.com/api/webhooks/1446228363730751601/XkIW5givj_HP0Ch-zaPBkha0MDrq35YUtKM6vS4wN0FEBi5fKvVBw8az58bInNaxT0G6";
   const DISCORD_WEBHOOK_ENTREE = "https://discord.com/api/webhooks/1446228205999751341/P4oQBT7hFwIv0S79Ln0k3O_WKZmpx5bOfOo85myYCe4MvjOO5EgvhO16zPEQTfchbOyH";
 });
+
 
